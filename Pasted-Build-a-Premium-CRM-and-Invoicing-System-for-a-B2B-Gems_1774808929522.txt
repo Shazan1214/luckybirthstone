@@ -1,0 +1,200 @@
+Build a Premium CRM and Invoicing System for a B2B Gemstone Marketplace.
+
+==================================================
+OBJECTIVE
+==================================================
+
+Enable traders to manage their entire business (contacts, deals, approvals, invoices, and payments) within the platform.
+
+==================================================
+1. PLAN-BASED ACCESS
+==================================================
+
+Enable CRM only for:
+
+- Pro Plan
+- Premium Plan
+
+Disable for Basic users
+
+==================================================
+2. CONTACT MANAGEMENT
+==================================================
+
+Create “My Contacts”
+
+Fields:
+
+- id
+- name
+- company_name
+- type (buyer, trader, partner)
+- phone (private)
+- email
+- notes
+- tags
+- created_at
+
+Features:
+
+- add/edit/delete
+- search and filter
+- tagging (VIP, high risk, etc)
+
+==================================================
+3. DEAL PIPELINE (KANBAN)
+==================================================
+
+Stages:
+
+- lead
+- negotiation
+- approval
+- closed_won
+- closed_lost
+
+Fields:
+
+- id
+- contact_id
+- listing_id
+- deal_value
+- stage
+- notes
+- created_at
+
+UI:
+
+- drag-and-drop Kanban board
+
+==================================================
+4. APPROVAL TRACKING (CRM VIEW)
+==================================================
+
+Integrate approval system into CRM
+
+Show:
+
+- stones given on approval
+- stones taken on approval
+
+Fields:
+
+- listing_id
+- partner_id
+- expiry_date
+- status
+
+==================================================
+5. INVOICING SYSTEM
+==================================================
+
+Create invoices
+
+Fields:
+
+- invoice_id
+- seller_id
+- buyer_id
+- items (array of gemstones)
+- quantity
+- price
+- currency (USD, INR, AED, THB)
+- total_amount
+- status (paid, pending, overdue)
+- due_date
+- created_at
+
+Features:
+
+- generate downloadable PDF
+- send via email
+- send via WhatsApp
+- mark as paid
+- support partial payments
+
+==================================================
+6. PAYMENT TRACKING
+==================================================
+
+Track payments
+
+Fields:
+
+- id
+- invoice_id
+- amount_paid
+- remaining_balance
+- payment_date
+
+Statuses:
+
+- paid
+- pending
+- overdue
+
+==================================================
+7. NOTIFICATIONS
+==================================================
+
+Trigger:
+
+- invoice created
+- payment reminder
+- overdue alert
+
+Channels:
+
+- email
+- WhatsApp
+
+==================================================
+8. ANALYTICS DASHBOARD
+==================================================
+
+Show:
+
+- total revenue
+- pending payments
+- overdue payments
+- top buyers
+- top gemstones
+- approval-based sales
+
+==================================================
+9. UI STRUCTURE
+==================================================
+
+Sidebar:
+
+Dashboard  
+My Company  
+Listings  
+Auctions  
+Approval Trades  
+
+--- PREMIUM ---
+My Trade Manager  
+- Contacts  
+- Deals  
+- Invoices  
+- Payments  
+- Analytics  
+
+==================================================
+10. UI COMPONENTS
+==================================================
+
+Build:
+
+- Contacts table
+- Kanban deal board
+- Invoice preview page
+- Payments dashboard
+- Analytics cards
+
+==================================================
+GOAL
+==================================================
+
+Provide traders with a complete business management system to manage leads, approvals, invoices, and payments, making the platform their primary daily tool.

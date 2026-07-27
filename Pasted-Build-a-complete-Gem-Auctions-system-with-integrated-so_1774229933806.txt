@@ -1,0 +1,311 @@
+Build a complete "Gem Auctions" system with integrated social sharing for each auction.
+
+----------------------------------
+1. FEATURE OVERVIEW
+----------------------------------
+
+Create "Gem Auctions" where users can:
+- Convert existing listings into auctions
+- Allow real-time bidding
+- Share auctions via social channels
+
+Rules:
+- Auctions must be created ONLY from existing listings
+- Only verified users can create auctions
+- Only verified users can bid
+
+----------------------------------
+2. AUCTION DATA MODEL
+----------------------------------
+
+Create auction structure:
+
+- id
+- inventory_id
+- seller_id
+- starting_price
+- current_highest_bid
+- reserve_price (optional)
+- min_increment
+- start_time
+- end_time
+- status (active, completed, cancelled)
+- winner_id
+- total_bids
+- share_count
+
+----------------------------------
+3. BIDS MODEL
+----------------------------------
+
+- id
+- auction_id
+- user_id
+- bid_amount
+- created_at
+
+----------------------------------
+4. CREATE AUCTION FROM LISTING
+----------------------------------
+
+Add button in "My Listings":
+- "Start Gem Auction"
+
+Endpoint:
+
+POST /gem-auctions/create
+
+Input:
+- inventory_id
+- starting_price
+- reserve_price
+- min_increment
+- duration_hours
+
+Validation:
+- user must own listing
+- listing must not already be in auction
+- user must be verified
+
+----------------------------------
+5. UPDATE LISTING STATUS
+----------------------------------
+
+Add to inventory:
+
+- is_in_auction (true/false)
+- auction_id
+
+----------------------------------
+6. PLACE BID
+----------------------------------
+
+Endpoint:
+
+POST /gem-auctions/bid
+
+Rules:
+- bid > current_highest_bid + min_increment
+- seller cannot bid
+- only verified users can bid
+
+Update:
+- current_highest_bid
+- total_bids
+
+----------------------------------
+7. AUCTION TIMER
+----------------------------------
+
+- Auto end when end_time reached
+
+On completion:
+- set winner_id
+- status = completed
+
+----------------------------------
+8. POST-AUCTION FLOW
+----------------------------------
+
+- Open chat between seller and winner
+- Send email notifications
+
+----------------------------------
+9. GEM AUCTIONS PAGE
+----------------------------------
+
+Create:
+
+/gem-auctions
+
+Show:
+- all active auctions
+
+Filters:
+- gemstone
+- price
+- ending soon
+
+----------------------------------
+10. HOMEPAGE SECTION
+----------------------------------
+
+Add:
+
+"💎 Live Gem Auctions"
+
+Display:
+- top 10 active auctions
+
+Include:
+- image
+- stone name
+- current bid
+- bids count
+- countdown timer
+
+----------------------------------
+11. COUNTDOWN TIMER
+----------------------------------
+
+- Live countdown (end_time - now)
+- Update every second
+
+----------------------------------
+12. AUTO REFRESH
+----------------------------------
+
+- Refresh every 5–10 seconds
+
+----------------------------------
+13. HIGHLIGHTS
+----------------------------------
+
+- "Ending Soon" if < 1 hour
+- "🔥 Trending" if bids > 5
+
+----------------------------------
+14. AUCTION DETAIL PAGE
+----------------------------------
+
+Create:
+
+/gem-auctions/:id
+
+Show:
+- full details
+- images
+- seller info
+- bid history
+- place bid form
+
+----------------------------------
+15. SOCIAL SHARING FEATURE
+----------------------------------
+
+Add "Share Auction" button
+
+----------------------------------
+16. GENERATE SHARE TEXT
+----------------------------------
+
+Create function:
+
+generateShareText(auction)
+
+Format:
+
+"💎 Live Gem Auction!
+
+{stone_name} | {carat} ct  
+Current Bid: ${current_bid}  
+Ends in: {time_remaining}
+
+Bid now: {auction_url}"
+
+----------------------------------
+17. SHARE OPTIONS
+----------------------------------
+
+Provide:
+
+- WhatsApp
+- Email
+- Copy Link
+
+----------------------------------
+18. WHATSAPP SHARE LINK
+----------------------------------
+
+https://wa.me/?text={encoded_text}
+
+----------------------------------
+19. EMAIL SHARE
+----------------------------------
+
+mailto:?subject=Gem Auction&body={encoded_text}
+
+----------------------------------
+20. COPY LINK
+----------------------------------
+
+- Copy auction URL
+- Show confirmation message
+
+----------------------------------
+21. SOCIAL PREVIEW (META TAGS)
+----------------------------------
+
+Add dynamic meta tags:
+
+- title = "{stone_name} Live Auction"
+- description = "Current Bid: $X | Ends in X"
+- image = gemstone image
+
+----------------------------------
+22. TRACK SHARING
+----------------------------------
+
+- Increment share_count on share click
+
+----------------------------------
+23. MONETIZATION
+----------------------------------
+
+Auction pricing:
+
+- Standard: $20
+- Featured: $50
+
+Add:
+- is_featured
+- boost_expiry_date
+
+Featured:
+- show on homepage
+- rank higher
+
+----------------------------------
+24. PAYMENT INTEGRATION
+----------------------------------
+
+Before auction goes live:
+- require payment (if applicable)
+
+Use existing payment system
+
+----------------------------------
+25. ACCESS CONTROL
+----------------------------------
+
+- Only verified users create auctions
+- Only verified users bid
+
+----------------------------------
+26. PREVENT DOUBLE SELLING
+----------------------------------
+
+If in auction:
+- disable direct sale
+
+----------------------------------
+27. ERROR HANDLING
+----------------------------------
+
+- no bids after end
+- no invalid bids
+- no duplicate auctions
+
+----------------------------------
+28. FUTURE READY
+----------------------------------
+
+Prepare for:
+- WebSocket real-time bidding
+- auto-bidding (proxy)
+- watchlist
+- referral tracking from shares
+
+----------------------------------
+GOAL:
+Build a powerful Gem Auctions system with built-in social sharing to drive traffic, engagement, and competitive bidding.

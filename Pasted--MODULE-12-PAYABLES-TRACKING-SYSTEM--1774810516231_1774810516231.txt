@@ -1,0 +1,193 @@
+==================================================
+MODULE 12: PAYABLES TRACKING SYSTEM
+==================================================
+
+Create a system to track all outgoing payments (money the trader owes to suppliers, partners, and approval-based owners).
+
+----------------------------------
+1. PAYABLE RECORD SYSTEM
+----------------------------------
+
+Create “Payables Ledger”
+
+Fields:
+
+- id
+- buyer_id (current user)
+- supplier_id (owner or vendor)
+- listing_id
+- gemstone_name
+- quantity
+- total_cost
+- currency
+- purchase_type (direct / approval)
+- related_sale_id (if approval-based)
+- created_at
+
+----------------------------------
+2. PAYMENT SUMMARY PER PAYABLE
+----------------------------------
+
+Track:
+
+- total_amount
+- amount_paid
+- outstanding_amount
+
+Auto-calculate:
+
+outstanding_amount = total_amount - amount_paid
+
+----------------------------------
+3. PAYABLES DASHBOARD
+----------------------------------
+
+Create “Payments Due”
+
+Show:
+
+- supplier name
+- company
+- total payable
+- overdue amount
+- last payment date
+
+Filters:
+
+- All
+- Pending
+- Overdue
+- Paid
+
+----------------------------------
+4. SUPPLIER LEDGER VIEW
+----------------------------------
+
+For each supplier:
+
+Show:
+
+- all purchases / approval items taken
+- payments made
+- outstanding balance
+
+----------------------------------
+5. APPROVAL PAYABLE TRACKING
+----------------------------------
+
+If purchase_type = approval:
+
+Track:
+
+- owner_id (supplier)
+- partner_id (current user)
+- base price
+- final selling price
+- margin earned
+
+Condition:
+
+- Payable is due only after item is marked as sold
+
+----------------------------------
+6. PAYMENT ENTRY SYSTEM
+----------------------------------
+
+Allow user to record payments made to suppliers
+
+Fields:
+
+- payable_id
+- amount_paid
+- payment_date
+- payment_mode (cash, bank, online)
+- notes
+
+Support:
+
+- partial payments
+- multiple payments
+
+----------------------------------
+7. DUE DATE & OVERDUE LOGIC
+----------------------------------
+
+If current_date > due_date:
+
+Mark as:
+
+- overdue
+
+Show:
+
+- days overdue
+
+----------------------------------
+8. PAYMENT REMINDERS (OUTGOING)
+----------------------------------
+
+Allow user to:
+
+- set reminders to pay suppliers
+
+Optional alerts:
+
+- notify before due date
+- notify when overdue
+
+----------------------------------
+9. WHATSAPP PAYMENT CONFIRMATION
+----------------------------------
+
+When payment is made:
+
+Send message to supplier:
+
+“Hello {{supplier_name}}, payment of {{amount}} has been made for {{gemstone}}. Thank you.”
+
+----------------------------------
+10. EMAIL NOTIFICATION
+----------------------------------
+
+Send email confirmation:
+
+Subject:
+
+Payment Confirmation – {{amount}}
+
+Include:
+
+- supplier details
+- transaction details
+- reference ID
+
+----------------------------------
+11. UI COMPONENTS
+----------------------------------
+
+Create:
+
+- Payables Ledger Table
+- Payments Due Dashboard
+- Supplier Ledger Page
+- Payment Entry Modal
+
+----------------------------------
+12. NET POSITION VIEW (IMPORTANT)
+----------------------------------
+
+Create summary:
+
+- Total Receivable
+- Total Payable
+- Net Balance
+
+Formula:
+
+Net Position = Receivables - Payables
+
+----------------------------------
+GOAL
+----------------------------------
+
+Enable traders to track all outgoing payments, manage supplier relationships, and maintain financial discipline across direct and approval-based trades.

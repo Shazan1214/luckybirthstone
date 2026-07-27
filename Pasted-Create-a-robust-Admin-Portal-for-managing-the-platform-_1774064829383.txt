@@ -1,0 +1,146 @@
+Create a robust Admin Portal for managing the platform.
+
+----------------------------------
+1. ADMIN ROLE
+----------------------------------
+
+Add new user role:
+- admin
+
+Add fields:
+- is_admin (true/false)
+
+Create admin login:
+- POST /admin/login
+
+----------------------------------
+2. ADMIN DASHBOARD
+----------------------------------
+
+Create endpoint:
+- GET /admin/dashboard
+
+Return:
+
+- total_users
+- verified_users
+- active_subscriptions
+- total_listings
+- pending_verifications
+- overdue_transactions
+
+----------------------------------
+3. USER MANAGEMENT
+----------------------------------
+
+Endpoints:
+
+- GET /admin/users
+- GET /admin/users/:id
+
+Admin actions:
+- approve verification
+- reject verification
+- update verification_status
+
+Add filters:
+- user_type
+- verification_status
+
+----------------------------------
+4. DOCUMENT REVIEW
+----------------------------------
+
+Allow admin to view:
+
+- trade_license_document_url
+- government_id_document_url
+
+Add:
+- approve/reject buttons
+
+----------------------------------
+5. SUBSCRIPTION MANAGEMENT
+----------------------------------
+
+Endpoints:
+
+- GET /admin/subscriptions
+
+Fields:
+- user_id
+- plan
+- status (active, expired)
+- payment_status (paid, unpaid)
+- expiry_date
+
+Admin can:
+- update plan
+- mark payment as paid
+
+----------------------------------
+6. PAYMENT DUE TRACKING
+----------------------------------
+
+Endpoints:
+
+- GET /admin/transactions
+
+Filter:
+- overdue (due_date < today AND not completed)
+
+Admin actions:
+- trigger reminder email
+
+----------------------------------
+7. EMAIL REMINDERS
+----------------------------------
+
+Add endpoint:
+
+- POST /admin/send-reminder
+
+Input:
+- user_id
+- message
+
+Simulate sending email:
+"Your payment is overdue. Please clear dues."
+
+----------------------------------
+8. LISTING MODERATION
+----------------------------------
+
+Endpoints:
+
+- GET /admin/listings
+- PUT /admin/listings/:id
+
+Admin can:
+- approve listing
+- delete listing
+- mark as featured
+
+----------------------------------
+9. ACCESS CONTROL
+----------------------------------
+
+- Only admin can access /admin routes
+- Validate is_admin = true
+
+----------------------------------
+10. ADMIN UI (BASIC)
+----------------------------------
+
+Create simple admin panel with:
+
+Pages:
+- Dashboard
+- Users
+- Listings
+- Transactions
+- Subscriptions
+
+----------------------------------
+GOAL:
+Provide full control over users, verification, billing, listings, and payment tracking through a centralized admin system.

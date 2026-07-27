@@ -1,0 +1,356 @@
+Build a Global B2B Gemstone Marketplace with Trust, Credit, Social Identity, and Multi-Language Support.
+
+==================================================
+PHASE 1: USER MODEL & COMPANY PROFILE
+==================================================
+
+Replace buyer/seller roles with:
+
+user_type:
+- b2btrader
+- trader
+- retailer
+- miner
+- manufacturer
+
+User Schema:
+
+- id
+- name
+- email
+- password
+- user_type
+- company_name
+- owner_name
+- address
+- country
+- contact_number (PRIVATE)
+- trade_license_number
+- trade_license_document_url
+- government_id_number
+- government_id_document_url
+- website
+- instagram_url
+- facebook_url
+- logo_url
+- years_in_business
+- specialization
+- preferred_language (default: English)
+- rating
+- trust_score (default 0)
+- verification_status (basic_verified, premium_verified, legacy_verified)
+- email_verified
+- is_online
+- created_at
+
+==================================================
+PHASE 2: TRUST SCORE SYSTEM
+==================================================
+
+Add Trust Score (0–100)
+
+Calculate based on:
+
+- deals_completed (30%)
+- payment_timeliness (30%)
+- endorsements_count (20%)
+- profile_completeness (10%)
+- response_rate (10%)
+
+Penalties:
+- dispute (-20 each)
+- delayed payment (-10)
+
+Store:
+
+- trust_score
+- deals_completed
+- on_time_payments
+- delayed_payments
+- disputes_count
+- response_rate
+
+Display on profile with breakdown
+
+==================================================
+PHASE 3: ENDORSEMENTS (SOCIAL TRUST)
+==================================================
+
+Allow verified users to endorse others
+
+Fields:
+
+- id
+- from_user_id
+- to_user_id
+- message
+- years_known
+- timestamp
+
+Features:
+
+- “Request Endorsement” button
+- Accept/Reject endorsement
+- Display endorsements on profile
+
+==================================================
+PHASE 4: CONNECTION NETWORK
+==================================================
+
+Create connection system
+
+Fields:
+
+- user_id
+- connected_user_id
+- status (pending, accepted)
+
+Features:
+
+- Send connection request
+- Accept/reject
+- Show “Connected Traders” on profile
+
+==================================================
+PHASE 5: CREDIT SYSTEM (PEER-TO-PEER)
+==================================================
+
+Each seller can assign credit to buyers
+
+Fields:
+
+- seller_id
+- buyer_id
+- credit_limit
+- used_credit
+- last_updated
+
+Rules:
+
+- Platform does NOT provide credit
+- Only sellers define limits
+- Show credit visibility only to seller
+
+==================================================
+PHASE 6: DEAL TRACKING SYSTEM
+==================================================
+
+Track transactions
+
+Fields:
+
+- id
+- buyer_id
+- seller_id
+- listing_id
+- amount
+- currency
+- status (pending, completed, disputed)
+- payment_status (on_time, delayed)
+- created_at
+
+Update trust score based on this
+
+==================================================
+PHASE 7: DISPUTE MANAGEMENT
+==================================================
+
+Allow users to raise disputes
+
+Fields:
+
+- id
+- deal_id
+- raised_by
+- description
+- proof_upload_url
+- status (open, resolved, rejected)
+- resolution_notes
+
+Admin can:
+
+- resolve disputes
+- penalize trust score
+
+==================================================
+PHASE 8: LEGACY VERIFICATION
+==================================================
+
+Add:
+
+- legacy_verified (true/false)
+
+Criteria:
+
+- manual admin approval
+- 20+ years experience OR strong endorsements
+
+Display special badge
+
+==================================================
+PHASE 9: SOCIAL PROFILE (MY COMPANY PAGE)
+==================================================
+
+Build “My Company” page
+
+Sections:
+
+1. Header:
+- logo
+- company name
+- user_type
+- location
+- trust_score
+- verification badge
+
+2. Owner Info:
+- owner_name
+- years_in_business
+- specialization
+
+3. Social Links:
+- website
+- instagram
+- facebook
+
+4. Media Gallery:
+- upload multiple images (shop, certificates, inventory)
+
+5. Connections:
+- list connected traders
+
+6. Endorsements:
+- show messages
+
+7. Trust Score Breakdown
+
+8. Tabs:
+- Listings
+- Auctions
+- Activity
+
+==================================================
+PHASE 10: ACTIVITY FEED
+==================================================
+
+Track:
+
+- new listings
+- auctions created
+- deals completed
+
+Fields:
+
+- user_id
+- activity_type
+- reference_id
+- timestamp
+
+==================================================
+PHASE 11: MULTI-LANGUAGE SUPPORT
+==================================================
+
+Supported Languages:
+
+- English
+- Hindi
+- Thai
+- Arabic
+- Russian
+- Persian
+
+==================================================
+PHASE 12: UI TRANSLATION
+==================================================
+
+Create translation system
+
+Store:
+
+- key
+- language
+- value
+
+Translate:
+
+- buttons
+- menus
+- labels
+
+Example:
+
+"contact_seller":
+- en: Contact Seller
+- hi: विक्रेता से संपर्क करें
+- th: ติดต่อผู้ขาย
+
+==================================================
+PHASE 13: LISTING TRANSLATION
+==================================================
+
+When listing is created:
+
+Store:
+
+- original_language
+- title_original
+- description_original
+
+Auto-generate:
+
+- title_translated
+- description_translated
+
+Use translation API
+
+==================================================
+PHASE 14: MESSAGE TRANSLATION
+==================================================
+
+In chat:
+
+Store:
+
+- original_message
+- translated_message
+- original_language
+
+Auto-translate messages for receiver
+
+Add toggle:
+
+- View Original / View Translation
+
+==================================================
+PHASE 15: LANGUAGE SETTINGS
+==================================================
+
+Each user can select:
+
+- preferred_language
+
+System shows content in that language
+
+==================================================
+PHASE 16: GEMSTONE TERMINOLOGY STANDARDIZATION
+==================================================
+
+Create gemstone dictionary
+
+Fields:
+
+- term
+- standardized_value
+- translations
+
+Examples:
+
+- untreated
+- heated
+- natural
+
+Ensure consistent translation
+
+==================================================
+GOAL:
+Create a global trust-driven gemstone trading platform where traders can verify identity, build reputation, extend credit safely, and communicate across languages seamlessly.

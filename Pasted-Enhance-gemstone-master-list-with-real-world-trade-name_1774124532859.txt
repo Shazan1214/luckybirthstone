@@ -1,0 +1,150 @@
+Enhance gemstone master list with real-world trade names, regional names, and varieties.
+
+----------------------------------
+1. UPDATE GEMSTONE STRUCTURE
+----------------------------------
+
+Each gemstone should support:
+
+{
+  name: string,
+  category: string,
+  alternate_names: [string],
+  origin_tags: [string]
+}
+
+----------------------------------
+2. ADD COMMON TRADE + REGIONAL NAMES
+----------------------------------
+
+Add the following gemstones and variations:
+
+SAPPHIRE FAMILY:
+- Yellow Sapphire (Pukhraj)
+- Blue Sapphire (Neelam)
+- White Sapphire
+- Pink Sapphire
+- Padparadscha Sapphire
+- Star Sapphire
+- Ceylon Sapphire
+- Kashmir Sapphire
+
+RUBY:
+- Burma Ruby
+- Mozambique Ruby
+- Pigeon Blood Ruby
+- Star Ruby
+
+EMERALD:
+- Colombian Emerald
+- Zambian Emerald
+- Panjshir Emerald
+- No Oil Emerald
+
+TURQUOISE (FIROZA):
+- Iranian Firoza
+- Nishapur Firoza
+- Yemeni Firoza
+- Persian Turquoise
+
+AGATE / HAKEEQ:
+- Sulemani Hakik
+- Aqeeq (Haqeeq)
+- Yemeni Aqeeq
+- Red Aqeeq
+- Black Aqeeq
+
+CORAL:
+- Red Coral (Moonga)
+- Italian Coral
+- Japanese Coral
+- White Coral
+
+TOPAZ:
+- Yellow Topaz
+- White Topaz
+- Blue Topaz
+- Imperial Topaz
+
+QUARTZ:
+- Sphatik (Clear Quartz)
+- Rose Quartz
+- Smoky Quartz
+- Lemon Quartz
+- Rutilated Quartz
+
+GARNET:
+- Hessonite (Gomed)
+- Rhodolite Garnet
+- Tsavorite Garnet
+- Spessartite Garnet
+
+CAT’S EYE:
+- Chrysoberyl Cat’s Eye (Lehsunia)
+- Quartz Cat’s Eye
+
+JADE:
+- Jadeite
+- Nephrite
+- Burmese Jade
+
+OPAL:
+- White Opal
+- Black Opal
+- Fire Opal
+- Ethiopian Opal
+
+OTHER IMPORTANT TRADE NAMES:
+- Lapis Lazuli (Lajward)
+- Turquoise (Firoza)
+- Zircon (Jarkan)
+- Peridot (Zabarjad)
+- Iolite (Neeli)
+- Moonstone (Chandrakant Mani)
+- Sunstone
+- Tiger Eye
+
+----------------------------------
+3. SEARCH IMPROVEMENT
+----------------------------------
+
+Allow users to search using:
+- main name
+- alternate names
+
+Example:
+Searching “Pukhraj” → returns “Yellow Sapphire”
+Searching “Firoza” → returns “Turquoise”
+
+----------------------------------
+4. LISTING FLEXIBILITY
+----------------------------------
+
+Allow sellers to:
+- choose gemstone from dropdown
+- OR type custom name if not found
+
+Store:
+- gemstone_name
+- alternate_name (optional)
+
+----------------------------------
+5. FILTERS
+----------------------------------
+
+Enable filters:
+- by gemstone family (Sapphire, Ruby, Quartz, etc)
+- by trade name
+
+----------------------------------
+6. FUTURE READY
+----------------------------------
+
+Prepare for:
+- origin-based pricing (Iranian, Burmese, etc)
+- regional demand insights
+- AI mapping of local names to standard names
+
+----------------------------------
+GOAL:
+Support real-world gemstone trading terminology including regional names, trade names, and varieties for better search, listing accuracy, and global usability.

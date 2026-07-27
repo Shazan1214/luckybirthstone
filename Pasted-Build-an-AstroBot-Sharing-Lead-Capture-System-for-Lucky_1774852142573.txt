@@ -1,0 +1,194 @@
+Build an AstroBot Sharing & Lead Capture System for LuckyBirthstone that allows traders to share a personalized gemstone recommendation quiz and convert users into leads.
+
+==================================================
+OBJECTIVE
+=========
+
+Enable traders to:
+
+* Share AstroBot link with customers
+* Let customers discover the right gemstone
+* Match recommendations with trader inventory
+* Capture leads even if inventory is unavailable
+
+==================================================
+
+1. UNIQUE ASTROBOT LINK PER TRADER
+   ==================================================
+
+Generate unique link:
+
+/astrobot?ref={trader_id}
+
+Example:
+
+luckybirthstone.com/astrobot?ref=12345
+
+---
+
+## TRACK:
+
+* ref_trader_id
+* clicks
+* completed quizzes
+* leads generated
+
+==================================================
+2. USER FLOW (CUSTOMER SIDE)
+============================
+
+Step 1:
+User opens AstroBot link
+
+Step 2:
+Completes quiz:
+
+* Name
+* Birth date
+* Zodiac
+* Problem (career, health, wealth, etc)
+
+Step 3:
+AstroBot suggests gemstone(s)
+
+==================================================
+3. INVENTORY MATCHING
+=====================
+
+System checks:
+
+IF trader (ref_trader_id) has matching gemstone:
+
+→ Show:
+
+* Available stones from that trader
+* Images
+* Price
+* CTA: “Contact Seller”
+
+---
+
+IF NOT AVAILABLE:
+
+→ Trigger fallback flow
+
+==================================================
+4. FALLBACK FLOW (NO INVENTORY)
+===============================
+
+Show message:
+
+“This stone is not currently available with this trader.”
+
+CTA:
+
+👉 “Request This Stone”
+
+==================================================
+5. LEAD CAPTURE SYSTEM
+======================
+
+When user clicks “Request This Stone”:
+
+Capture:
+
+* name
+* phone (WhatsApp mandatory)
+* email (optional)
+* recommended gemstone
+* astrobot report
+
+Store:
+
+* lead_id
+* trader_id
+* status (new / contacted / converted)
+
+==================================================
+6. AUTO SHARE ASTRO REPORT
+==========================
+
+Send to trader:
+
+* Full AstroBot report
+* User details
+* Requested gemstone
+
+Channels:
+
+* WhatsApp
+* Email
+
+==================================================
+7. WHATSAPP MESSAGE (TO TRADER)
+===============================
+
+Template:
+
+“New AstroBot lead 🚀
+Customer: {{name}}
+Recommended Stone: {{gemstone}}
+Please contact and assist.”
+
+==================================================
+8. WHATSAPP MESSAGE (TO CUSTOMER)
+=================================
+
+Template:
+
+“Thank you for using AstroBot. Your gemstone recommendation has been shared with a verified trader. They will contact you shortly.”
+
+==================================================
+9. DEALER ACTIONS
+=================
+
+Trader can:
+
+* Contact customer via WhatsApp
+* Add to CRM
+* Offer alternative stones
+* Upload matching inventory later
+
+==================================================
+10. CRM INTEGRATION
+===================
+
+Auto-create:
+
+* Contact
+* Lead
+
+Tag:
+
+“AstroBot Lead”
+
+==================================================
+11. ANALYTICS
+=============
+
+Track per trader:
+
+* total clicks
+* quiz completions
+* matched inventory conversions
+* unmet demand (important)
+
+==================================================
+12. UI ELEMENTS
+===============
+
+On AstroBot result page:
+
+* Recommended gemstone card
+* “Available from your trader” section
+* OR fallback “Request this stone” CTA
+
+==================================================
+GOAL
+====
+
+Turn AstroBot into a demand-generation engine where:
+
+* traders attract leads
+* customers get personalized recommendations
+* unmet demand is captured and converted into future sales

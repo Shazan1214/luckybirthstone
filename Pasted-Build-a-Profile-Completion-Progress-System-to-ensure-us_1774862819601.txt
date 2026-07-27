@@ -1,0 +1,165 @@
+Build a Profile Completion Progress System to ensure users complete all required information on their profile.
+
+==================================================
+OBJECTIVE
+==================================================
+
+Encourage users to fully complete their business profile by showing a progress bar, checklist, and clear actions.
+
+==================================================
+1. PROFILE COMPLETION LOGIC
+==================================================
+
+Define profile fields with weights:
+
+----------------------------------
+BASIC INFO (30%)
+----------------------------------
+- name (5%)
+- email_verified (5%)
+- contact_number (5%)
+- company_name (5%)
+- user_type (5%)
+- address (5%)
+
+----------------------------------
+BUSINESS DETAILS (30%)
+----------------------------------
+- trade_license_number (10%)
+- trade_license_document_url (10%)
+- owner_name (5%)
+- website (5%)
+
+----------------------------------
+VERIFICATION (20%)
+----------------------------------
+- government_id_number (10%)
+- government_id_document_url (10%)
+
+----------------------------------
+BRANDING (20%)
+----------------------------------
+- logo_url (10%)
+- profile description/about company (10%)
+
+==================================================
+2. COMPLETION CALCULATION
+==================================================
+
+Calculate:
+
+profile_completion_percentage = sum of completed fields %
+
+Update in real-time
+
+==================================================
+3. UI COMPONENT (TOP BANNER)
+==================================================
+
+Add banner on dashboard:
+
+“Complete Your Profile”
+
+Progress bar:
+
+[████████░░] 80% Complete
+
+Subtext:
+
+“Complete your profile to build trust and unlock more features”
+
+CTA:
+
+“Complete Profile”
+
+==================================================
+4. CHECKLIST VIEW
+==================================================
+
+Show checklist with status:
+
+✔ Name  
+✔ Email Verified  
+❌ Upload Trade License  
+❌ Add Company Logo  
+✔ Contact Number  
+
+Each item:
+
+- clickable
+- redirects to edit section
+
+==================================================
+5. PROFILE PAGE INTEGRATION
+==================================================
+
+Show progress bar at top of profile page
+
+Show missing fields highlighted
+
+==================================================
+6. LOCK / INCENTIVE LOGIC
+==================================================
+
+Optional restrictions:
+
+- Messaging enabled only after 50%
+- Approval trading enabled after 70%
+- “Verified badge” only after 100%
+
+==================================================
+7. BADGE SYSTEM
+==================================================
+
+Show:
+
+- 0–50% → “Basic Profile”
+- 50–80% → “Partially Verified”
+- 80–100% → “Verified Profile”
+
+==================================================
+8. REMINDERS
+==================================================
+
+Trigger reminders:
+
+- after signup
+- after 1st login
+- after 1st listing
+
+Message:
+
+“Complete your profile to build trust and get more leads”
+
+==================================================
+9. MICROCOPY (IMPORTANT)
+==================================================
+
+Use trader-focused language:
+
+- “Get more buyer trust”
+- “Increase chances of sale”
+- “Verified traders get more responses”
+
+==================================================
+10. MOBILE UX
+==================================================
+
+- Sticky progress bar at top
+- Tap checklist items → open edit modal
+- Keep flow simple
+
+==================================================
+11. ADMIN VIEW (OPTIONAL)
+==================================================
+
+Allow admin to see:
+
+- profile completion %
+- missing fields
+
+==================================================
+GOAL
+==================================================
+
+Ensure users complete their profiles to increase trust, improve platform quality, and drive higher engagement and conversions.

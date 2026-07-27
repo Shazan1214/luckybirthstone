@@ -1,0 +1,148 @@
+Build a Post-Email Verification Flow to Encourage Users to Install the Web App (Add to Home Screen) on Mobile Devices.
+
+==================================================
+OBJECTIVE
+==================================================
+
+After email verification, guide users to install the web app on their mobile home screen for better engagement and app-like experience.
+
+==================================================
+1. TRIGGER POINT
+==================================================
+
+After:
+
+- User clicks email verification link
+- email_verified = true
+
+Redirect user to:
+
+/install-app
+
+==================================================
+2. INSTALL PROMPT PAGE
+==================================================
+
+Create a dedicated page:
+
+Title:
+
+“Install LuckyBirthstone App”
+
+Subtext:
+
+“Get faster access, real-time alerts, and a seamless trading experience.”
+
+Benefits:
+
+- One-tap access from home screen
+- Faster performance
+- Real-time notifications (WhatsApp & updates)
+- Works like a mobile app
+
+==================================================
+3. DEVICE DETECTION
+==================================================
+
+Detect user device:
+
+- Android (Chrome)
+- iPhone (Safari)
+- Desktop (optional fallback)
+
+Show OS-specific instructions
+
+==================================================
+4. ANDROID (CHROME) INSTRUCTIONS
+==================================================
+
+Show steps:
+
+1. Tap the menu (⋮) in the top-right corner
+2. Tap “Add to Home screen”
+3. Confirm by tapping “Install”
+
+UI:
+
+- Show visual icons for each step
+- Add button: “Got it”
+
+Optional:
+
+- If PWA install prompt available → trigger native install popup
+
+==================================================
+5. IOS (SAFARI) INSTRUCTIONS
+==================================================
+
+Show steps:
+
+1. Tap the Share icon (⬆️)
+2. Scroll and tap “Add to Home Screen”
+3. Tap “Add”
+
+UI:
+
+- Highlight Share icon visually
+- Show step-by-step visuals
+
+==================================================
+6. FALLBACK (DESKTOP)
+==================================================
+
+Show message:
+
+“Open this link on your mobile device to install the app.”
+
+Optional:
+
+- Show QR code
+
+==================================================
+7. UI ELEMENTS
+==================================================
+
+- App icon preview
+- Clean step-by-step cards
+- OS-specific icons (Android/iOS)
+- CTA button: “Continue to Dashboard”
+
+==================================================
+8. SKIP OPTION
+==================================================
+
+Allow:
+
+“Skip for now”
+
+But show reminder later:
+
+- after 2nd login
+- after first listing
+- after first message
+
+==================================================
+9. REMINDER SYSTEM
+==================================================
+
+If user has NOT installed:
+
+Trigger subtle banner:
+
+“Install app for faster access”
+
+==================================================
+10. TRACKING
+==================================================
+
+Track:
+
+- users who viewed install page
+- users who clicked install
+- users who skipped
+
+==================================================
+GOAL
+==================================================
+
+Increase retention and engagement by making users install the platform as a web app on their mobile home screen.

@@ -1,0 +1,159 @@
+Add Verification Plans, Subscription Plans, Boost System, and Payment Gateway integration.
+
+----------------------------------
+1. VERIFICATION PLANS (ONE-TIME)
+----------------------------------
+
+Add verification tiers:
+
+- basic_verified (FREE)
+- verified ($99)
+- legacy_verified ($499)
+
+Update user fields:
+
+- verification_status
+- verification_payment_status (paid/unpaid)
+- verification_badge (basic, verified, legacy)
+
+Rules:
+
+- Basic = default free
+- Verified & Legacy require payment
+- Verification is ONE-TIME (no expiry)
+
+Benefits mapping:
+
+- verified:
+  - can list products
+  - full messaging access
+
+- legacy_verified:
+  - premium badge
+  - higher ranking in search
+  - priority visibility
+  - access to buyer insights (credit score)
+
+----------------------------------
+2. SUBSCRIPTION PLANS (MONTHLY)
+----------------------------------
+
+Add plans:
+
+- basic (max 5 listings)
+- pro (max 50 listings)
+- premium (unlimited listings)
+
+Add fields:
+
+- subscription_plan
+- subscription_status (active/expired)
+- subscription_expiry_date
+
+Rules:
+
+- Enforce listing limits based on plan
+- Prevent listing if limit exceeded
+
+----------------------------------
+3. PLANS PAGE (UI)
+----------------------------------
+
+Create /plans page:
+
+Sections:
+
+A. Verification Plans:
+- Basic (Free)
+- Verified ($99)
+- Legacy Verified ($499)
+
+B. Subscription Plans:
+- Basic
+- Pro
+- Premium
+
+Each plan should have:
+- price
+- features
+- "Subscribe" button
+
+----------------------------------
+4. BOOST SYSTEM
+----------------------------------
+
+Add boost feature inside listing:
+
+Fields:
+- is_featured
+- boost_expiry_date
+
+Options:
+
+- Single boost = $50 (7 days)
+- 5 boosts pack = $200
+- 10 boosts pack = $350
+
+Effect:
+- boosted listings appear on top
+
+----------------------------------
+5. PAYMENT GATEWAY INTEGRATION
+----------------------------------
+
+Integrate payment system (use Stripe or Razorpay simulation).
+
+Create:
+
+- POST /payments/initiate
+- POST /payments/verify
+
+Fields:
+
+- user_id
+- amount
+- payment_type (verification, subscription, boost)
+- status (pending, success, failed)
+
+On successful payment:
+
+- Update:
+  - verification_status (if verification payment)
+  - subscription_plan (if subscription)
+  - activate boost (if boost)
+
+----------------------------------
+6. PAYMENT RECORDS
+----------------------------------
+
+Store payments:
+
+- id
+- user_id
+- amount
+- currency
+- type (verification/subscription/boost)
+- status
+- created_at
+
+----------------------------------
+7. ACCESS CONTROL
+----------------------------------
+
+- Only verified users can list
+- Only subscribed users can exceed free limits
+- Only paid users can boost
+
+----------------------------------
+8. UI BADGES
+----------------------------------
+
+Show badges:
+
+- Basic Verified
+- Verified
+- Legacy Verified (highlighted)
+
+----------------------------------
+GOAL:
+Monetize the platform using verification (trust), subscriptions (usage), and boosts (visibility), with payment integration.

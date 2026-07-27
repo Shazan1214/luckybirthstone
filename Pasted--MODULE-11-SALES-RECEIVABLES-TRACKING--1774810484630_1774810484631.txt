@@ -1,0 +1,174 @@
+==================================================
+MODULE 11: SALES & RECEIVABLES TRACKING
+==================================================
+
+Create a centralized system to track all sales transactions and outstanding payments across buyers and approval partners.
+
+----------------------------------
+1. SALES RECORD SYSTEM
+----------------------------------
+
+Create “Sales Ledger”
+
+Fields:
+
+- id
+- seller_id
+- buyer_id
+- partner_id (optional, if approval-based)
+- listing_id
+- gemstone_name
+- quantity
+- total_value
+- currency
+- sale_type (direct / approval)
+- invoice_id
+- created_at
+
+----------------------------------
+2. PAYMENT SUMMARY PER SALE
+----------------------------------
+
+Track:
+
+- total_amount
+- amount_received
+- outstanding_amount
+
+Auto-calculate:
+
+outstanding_amount = total_amount - amount_received
+
+----------------------------------
+3. RECEIVABLES DASHBOARD
+----------------------------------
+
+Create “Pending Payments” view
+
+Show:
+
+- buyer name
+- company
+- total due
+- overdue amount
+- last payment date
+
+Filters:
+
+- All
+- Pending
+- Overdue
+- Paid
+
+----------------------------------
+4. CUSTOMER LEDGER VIEW
+----------------------------------
+
+For each buyer/partner:
+
+Show full history:
+
+- all purchases
+- payments made
+- outstanding balance
+
+----------------------------------
+5. APPROVAL SALES TRACKING
+----------------------------------
+
+If sale_type = approval:
+
+Track:
+
+- owner_id
+- partner_id
+- final selling price
+- partner margin
+
+----------------------------------
+6. PAYMENT ENTRY SYSTEM
+----------------------------------
+
+Allow manual entry of payments:
+
+Fields:
+
+- sale_id
+- amount_paid
+- payment_date
+- payment_mode (cash, bank, online)
+- notes
+
+Support:
+
+- partial payments
+- multiple payments per sale
+
+----------------------------------
+7. OVERDUE CALCULATION
+----------------------------------
+
+If current_date > due_date:
+
+Mark as:
+
+- overdue
+
+Show:
+
+- days overdue
+
+----------------------------------
+8. AUTOMATED REMINDERS
+----------------------------------
+
+Trigger reminders for:
+
+- pending payments
+- overdue invoices
+
+Channels:
+
+- WhatsApp
+- Email
+
+----------------------------------
+9. WHATSAPP REMINDER MESSAGE
+----------------------------------
+
+Template:
+
+“Hello {{name}}, this is a reminder for pending payment of {{amount}} for {{gemstone}}. Kindly clear dues. – LuckyBirthstone”
+
+----------------------------------
+10. EMAIL REMINDER
+----------------------------------
+
+Subject:
+
+Payment Reminder – Invoice {{invoice_id}}
+
+Body:
+
+Include:
+
+- invoice details
+- amount due
+- due date
+
+----------------------------------
+11. UI COMPONENTS
+----------------------------------
+
+Create:
+
+- Sales Ledger Table
+- Receivables Dashboard
+- Customer Ledger Page
+- Payment Entry Modal
+
+----------------------------------
+GOAL
+----------------------------------
+
+Enable traders to track all sales, payments, and outstanding dues across direct and approval-based trades, with automated reminders to improve collections.

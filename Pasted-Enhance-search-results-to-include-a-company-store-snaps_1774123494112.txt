@@ -1,0 +1,117 @@
+Enhance search results to include a company/store snapshot for each listing.
+
+----------------------------------
+1. EXTEND SEARCH RESPONSE
+----------------------------------
+
+Update GET /inventory/search response.
+
+For each listing, include:
+
+- stone_type
+- price
+- currency
+- estimated_price_range
+
+AND seller details:
+
+- company_name
+- user_type (b2b_trader, miner, etc)
+- city
+- country
+- distance_km (if location enabled)
+- rating
+- verification_status
+- logo_url
+
+----------------------------------
+2. CREATE COMPANY SNAPSHOT OBJECT
+----------------------------------
+
+Structure:
+
+company_snapshot: {
+  company_name: string,
+  user_type: string,
+  city: string,
+  country: string,
+  distance_km: number,
+  rating: number,
+  verification_status: string,
+  logo_url: string
+}
+
+----------------------------------
+3. UI DISPLAY (SEARCH RESULTS CARD)
+----------------------------------
+
+Each listing card should show:
+
+[Image]
+
+Stone: Ruby | 2.2 ct  
+Price: $1,200  
+Est: $1,000 – $1,400  
+
+--- Seller Info ---
+[Logo] Company Name  
+B2B Trader | Jaipur, India  
+⭐ 4.5 | Verified  
+📍 3.2 km away  
+
+[Contact Seller]
+
+----------------------------------
+4. CLICKABLE COMPANY PROFILE
+----------------------------------
+
+- Clicking company name/logo → opens company profile page
+
+----------------------------------
+5. COMPANY PROFILE PAGE
+----------------------------------
+
+Create page:
+
+/company/:id
+
+Show:
+- company name
+- logo
+- user_type
+- location
+- rating
+- all listings by that company
+
+----------------------------------
+6. PERFORMANCE OPTIMIZATION
+----------------------------------
+
+- Join seller data with listings in one API response
+- Avoid multiple API calls
+
+----------------------------------
+7. FALLBACKS
+----------------------------------
+
+If data missing:
+- Hide rating if no reviews
+- Hide distance if location not available
+- Show default logo if missing
+
+----------------------------------
+8. PRIVACY RULES
+----------------------------------
+
+- Do NOT show:
+  - exact address
+  - contact number
+
+Only show:
+- city
+- country
+- approximate distance
+
+----------------------------------
+GOAL:
+Provide rich, trust-building search results with company identity and location context to improve discovery and conversion.

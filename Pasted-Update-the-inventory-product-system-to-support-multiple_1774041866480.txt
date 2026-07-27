@@ -1,0 +1,91 @@
+Update the inventory (product) system to support multiple images with dimensions for each gemstone.
+
+----------------------------------
+1. UPDATE INVENTORY MODEL
+----------------------------------
+
+Replace single image_url with:
+
+images: [
+  {
+    image_url: string,
+    width: number,
+    height: number,
+    label: string (optional: "front", "side", "certificate", etc)
+  }
+]
+
+----------------------------------
+2. ADD IMAGE UPLOAD SUPPORT
+----------------------------------
+
+When creating or updating a gemstone listing:
+
+- Allow multiple image uploads
+- Each image should store:
+  - image_url
+  - width (auto or manual input)
+  - height (auto or manual input)
+  - optional label
+
+----------------------------------
+3. API UPDATES
+----------------------------------
+
+Update endpoints:
+
+POST /inventory
+PUT /inventory/:id
+
+Request body should accept:
+
+images: [
+  {
+    image_url,
+    width,
+    height,
+    label
+  }
+]
+
+----------------------------------
+4. VALIDATION RULES
+----------------------------------
+
+- Minimum 1 image required per listing
+- Maximum 10 images allowed
+- Only valid image URLs allowed
+- Width and height must be positive numbers
+
+----------------------------------
+5. UI CHANGES
+----------------------------------
+
+On Seller Dashboard:
+
+- Add multi-image upload section
+- Allow preview of uploaded images
+- Allow adding label (front, side, certificate, inclusion, etc)
+
+----------------------------------
+6. LISTING PAGE DISPLAY
+----------------------------------
+
+On product page:
+
+- Show image gallery (main image + thumbnails)
+- Allow clicking thumbnails to switch main image
+- Display image label if available
+
+----------------------------------
+7. FUTURE READY
+----------------------------------
+
+- Keep structure ready for:
+  - zoom functionality
+  - image-based AI analysis
+  - certificate image detection
+
+----------------------------------
+GOAL:
+Enable sellers to upload multiple high-quality images with dimensions to improve transparency, trust, and future AI capabilities.

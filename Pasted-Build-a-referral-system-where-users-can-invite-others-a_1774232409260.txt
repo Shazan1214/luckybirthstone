@@ -1,0 +1,139 @@
+Build a referral system where users can invite others and earn listing credits.
+
+----------------------------------
+1. USER REFERRAL FIELDS
+----------------------------------
+
+Update user model:
+
+- referral_code (unique)
+- referred_by (user_id, optional)
+- listing_credits (default 0)
+
+----------------------------------
+2. GENERATE REFERRAL CODE
+----------------------------------
+
+On signup:
+
+- Generate unique referral_code
+- Format: first name + random digits
+
+Example:
+RAZA1234
+
+----------------------------------
+3. REFERRAL LINK
+----------------------------------
+
+Create referral URL:
+
+/signup?ref={referral_code}
+
+----------------------------------
+4. CAPTURE REFERRAL
+----------------------------------
+
+During signup:
+
+- If referral_code present:
+  - find referrer
+  - store referred_by
+
+----------------------------------
+5. REFERRAL TRACKING TABLE
+----------------------------------
+
+Create:
+
+- id
+- referrer_id
+- referred_user_id
+- status (pending, successful)
+- created_at
+
+----------------------------------
+6. SUCCESS CONDITION
+----------------------------------
+
+Referral becomes SUCCESSFUL when:
+
+- new user completes email verification
+AND
+- user is verified (basic or paid)
+
+----------------------------------
+7. REWARD SYSTEM
+----------------------------------
+
+On successful referral:
+
+- Add +5 listing credits to referrer
+
+Optional:
+- Add +2 credits to referred user
+
+----------------------------------
+8. LISTING CREDIT USAGE
+----------------------------------
+
+Allow listing credits to:
+
+- create listings without subscription limit
+- deduct 1 credit per listing
+
+----------------------------------
+9. REFERRAL DASHBOARD
+----------------------------------
+
+Create section in user dashboard:
+
+"My Referrals"
+
+Show:
+- referral code
+- referral link
+- total referrals
+- successful referrals
+- total credits earned
+
+----------------------------------
+10. SHARE OPTIONS
+----------------------------------
+
+Add buttons:
+
+- Copy referral link
+- Share via WhatsApp
+- Share via Email
+
+----------------------------------
+11. NOTIFICATIONS
+----------------------------------
+
+Send email:
+
+- when referral joins
+- when referral is successful
+
+----------------------------------
+12. ABUSE PREVENTION
+----------------------------------
+
+- prevent self-referrals
+- limit rewards per user (optional)
+- verify email required
+
+----------------------------------
+13. ADMIN VIEW
+----------------------------------
+
+Admin panel:
+
+- view all referrals
+- track abuse
+- adjust credits manually
+
+----------------------------------
+GOAL:
+Create a referral system that incentivizes users to bring new traders to the platform using listing credits as rewards.

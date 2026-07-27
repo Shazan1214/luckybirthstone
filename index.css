@@ -1,0 +1,88 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --font-sans: var(--app-font-sans);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --background: 210 20% 98%;
+  --foreground: 220 25% 10%;
+  --border: 220 15% 88%;
+  --input: 220 15% 88%;
+  --ring: 221 60% 35%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 25% 10%;
+  --primary: 221 60% 28%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 15% 94%;
+  --secondary-foreground: 220 25% 20%;
+  --muted: 220 15% 96%;
+  --muted-foreground: 220 15% 48%;
+  --accent: 42 75% 48%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --app-font-sans: 'Inter', system-ui, sans-serif;
+  --radius: 0.625rem;
+}
+
+@layer base {
+  * { @apply border-border box-border; }
+  body { @apply bg-background text-foreground font-sans antialiased; }
+}
+
+/* Featured gem glow */
+.featured-card {
+  border: 1.5px solid hsl(42 75% 55%);
+  box-shadow: 0 0 0 1px hsl(42 75% 55% / 0.15), 0 4px 24px hsl(42 75% 48% / 0.18);
+}
+
+/* Confidence badge colours */
+.conf-high   { background: hsl(142 60% 92%); color: hsl(142 55% 28%); }
+.conf-medium { background: hsl(42 85% 93%);  color: hsl(30 70% 35%);  }
+.conf-low    { background: hsl(0 60% 93%);   color: hsl(0 55% 40%);   }
+
+/* Shared form inputs */
+.form-input {
+  @apply w-full px-3 py-2.5 rounded-lg border border-input text-sm outline-none;
+  @apply focus:ring-2 focus:ring-ring/30 focus:border-ring transition;
+}
+.form-select {
+  @apply w-full px-3 py-2.5 rounded-lg border border-input text-sm outline-none bg-white;
+  @apply focus:ring-2 focus:ring-ring/30 focus:border-ring transition;
+}
+
+/* Simple spinner */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid hsl(var(--border));
+  border-top-color: hsl(var(--primary));
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}

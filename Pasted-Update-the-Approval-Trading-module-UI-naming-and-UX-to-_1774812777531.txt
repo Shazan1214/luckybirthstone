@@ -1,0 +1,151 @@
+Update the “Approval Trading” module UI, naming, and UX to make it more intuitive, trader-friendly, and aligned with real-world “approval (memo) trading”.
+
+==================================================
+OBJECTIVE
+==================================================
+
+Simplify terminology, improve clarity, and make actions obvious for traders managing approval-based inventory.
+
+==================================================
+1. HEADER UPDATE
+==================================================
+
+Replace:
+
+“Approval Trading”
+
+With:
+
+“Approval (Memo) Trading”
+
+Update subtext:
+
+“Send stones on approval, manage partner requests, and let your network sell for you.”
+
+==================================================
+2. SECTION RENAMING (IMPORTANT)
+==================================================
+
+Update labels:
+
+1. “Stones on Approval” →  
+   “📦 Sent on Approval”
+
+   Subtext:
+   “Stones you’ve shared with partners”
+
+--------------------------------------------------
+
+2. “My Approval Inventory” →  
+   “🤝 Received on Approval”
+
+   Subtext:
+   “Stones you’ve taken to sell”
+
+--------------------------------------------------
+
+3. “My Store” →  
+   “🏪 My Listings”
+
+   Subtext:
+   “Your inventory for direct and partner sales”
+
+==================================================
+3. EMPTY STATE IMPROVEMENT
+==================================================
+
+Replace:
+
+“No approval requests yet”
+
+With:
+
+“No approval activity yet”
+
+Subtext:
+
+“Enable approval on your listings to let trusted partners request and sell your stones.”
+
+Add CTA button:
+
+“Enable Approval on Listings”
+
+==================================================
+4. VISUAL IMPROVEMENTS
+==================================================
+
+- Add icons for each section (box, handshake, store)
+- Improve spacing between cards
+- Use soft background cards for sections
+- Add subtle hover/click feedback
+
+==================================================
+5. ACTION ENHANCEMENTS
+==================================================
+
+Inside “Sent on Approval”:
+
+- Show:
+  - partner name
+  - gemstone
+  - status (approved / in approval / sold / returned)
+  - expiry
+
+Inside “Received on Approval”:
+
+- Show:
+  - owner company
+  - base price
+  - days remaining
+
+==================================================
+6. STATUS BADGES
+==================================================
+
+Add colored badges:
+
+- Approved → Blue
+- In Approval → Yellow
+- Sold → Green
+- Returned → Grey
+- Expired → Red
+
+==================================================
+7. LISTING TAG
+==================================================
+
+For listings with approval enabled:
+
+Show badge:
+
+“Co-sell Enabled”
+
+==================================================
+8. MOBILE OPTIMIZATION
+==================================================
+
+- Make sections tappable cards
+- Add sticky CTA button (Enable Approval)
+- Ensure readability with larger font
+
+==================================================
+9. MICROCOPY (TONE)
+==================================================
+
+Keep language:
+
+- simple
+- trader-friendly
+- action-oriented
+
+Avoid technical jargon
+
+==================================================
+GOAL
+==================================================
+
+Make approval trading easy to understand and use, even for offline traders, by clearly showing:
+
+- what they have sent
+- what they have received
+- what actions they need to take

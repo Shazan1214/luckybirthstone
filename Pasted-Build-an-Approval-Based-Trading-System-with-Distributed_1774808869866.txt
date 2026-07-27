@@ -1,0 +1,195 @@
+Build an Approval-Based Trading System with Distributed Listings for a B2B Gemstone Marketplace.
+
+==================================================
+OBJECTIVE
+==================================================
+
+Enable traders to give gemstones on “Approval Basis” (memo model) and allow trusted partners to sell using the same listing.
+
+==================================================
+1. LISTING CONFIGURATION
+==================================================
+
+Extend listing model with:
+
+- id
+- owner_id
+- gemstone_name
+- description
+- images (multiple)
+- certificate_url
+- base_price
+- min_price
+- currency
+- quantity
+
+Approval Fields:
+
+- approval_enabled (true/false)
+- approval_duration_days
+- max_partners
+- margin_type (flexible/fixed)
+- visibility (private/trusted/public)
+
+==================================================
+2. APPROVAL REQUEST SYSTEM
+==================================================
+
+Allow traders to request items on approval.
+
+Fields:
+
+- id
+- listing_id
+- requester_id
+- status (pending, approved, rejected)
+- approved_by
+- expiry_date
+
+Flow:
+
+1. Partner clicks “Request on Approval”
+2. Owner approves/rejects
+3. If approved → item moves to “In Approval”
+
+==================================================
+3. APPROVAL STATUS MANAGEMENT
+==================================================
+
+Statuses:
+
+- available
+- requested
+- approved
+- in_approval
+- sold
+- returned
+- expired
+
+==================================================
+4. INVENTORY CONTROL
+==================================================
+
+- Reduce available quantity when approved
+- Lock inventory per partner
+- Prevent double allocation
+
+==================================================
+5. PARTNER DASHBOARD
+==================================================
+
+Create “My Approval Inventory”
+
+Show:
+
+- gemstone name
+- owner company
+- base price
+- days remaining
+- status
+
+Actions:
+
+- mark as sold
+- return item
+- request extension
+
+==================================================
+6. OWNER DASHBOARD
+==================================================
+
+Create “Stones on Approval”
+
+Show:
+
+- gemstone
+- partner name
+- status
+- expiry
+
+Actions:
+
+- approve/reject requests
+- recall item
+- extend approval
+
+==================================================
+7. DISTRIBUTED LISTINGS (ADD TO MY STORE)
+==================================================
+
+Allow approved partners to reuse listing:
+
+Button:
+
+“Add to My Store”
+
+Create:
+
+- original_listing_id
+- owner_id
+- partner_id
+- is_approval_listing (true)
+
+==================================================
+8. DATA INHERITANCE
+==================================================
+
+Partner listing must reuse:
+
+- images
+- description
+- certificate
+
+Partner can edit:
+
+- selling_price
+
+Constraint:
+
+- selling_price >= base_price
+
+==================================================
+9. UI DISPLAY
+==================================================
+
+On partner listing show:
+
+Badge:
+“On Approval from [Owner Company]”
+
+Clickable to original listing
+
+==================================================
+10. SELL FLOW
+==================================================
+
+When partner sells:
+
+- mark listing as sold
+- update original listing
+- reduce inventory globally
+- record final price and margin
+
+==================================================
+11. MULTI-PARTNER SUPPORT
+==================================================
+
+- Allow multiple partners per listing
+- Track allocation per partner
+- Prevent overselling
+
+==================================================
+12. ANALYTICS
+==================================================
+
+Track:
+
+- top partners
+- approval conversions
+- total approval sales
+
+==================================================
+GOAL
+==================================================
+
+Digitize real-world approval-based gemstone trading and enable global co-selling through trusted partner networks with full inventory control and transparency.

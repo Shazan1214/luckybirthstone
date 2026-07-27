@@ -1,0 +1,230 @@
+Update the platform to support professional B2B user profiles, gated contact access, messaging, and email authentication.
+
+----------------------------------
+1. USER MODEL (STANDARDIZED TYPES)
+----------------------------------
+
+Remove "buyer" and "seller" roles completely.
+
+Add user categories (enum format):
+
+- b2b_trader
+- retailer
+- miner
+- manufacturer
+
+Store internally as:
+- b2b_trader
+- retailer
+- miner
+- manufacturer
+
+Display in UI as:
+- B2B Trader
+- Retailer
+- Miner
+- Manufacturer
+
+Update user schema:
+
+- id
+- name
+- email
+- password
+- user_type (enum)
+- company_name
+- address
+- contact_number (PRIVATE - never exposed publicly)
+- trade_license_number
+- trade_license_document_url
+- owner_name
+- government_id_number
+- government_id_document_url
+- website
+- logo_url
+- rating (default 0)
+- total_reviews (default 0)
+- verification_status (unverified, basic_verified, premium_verified)
+- email_verified (true/false)
+- subscription_plan (starter, growth, pro)
+- is_online (true/false)
+- last_active_at
+- created_at
+
+Validation:
+- user_type is mandatory during signup
+
+----------------------------------
+2. SIGNUP + EMAIL AUTHENTICATION
+----------------------------------
+
+- Add signup with email + password
+- Simulate email verification system
+
+Endpoints:
+- POST /signup
+- POST /verify-email
+
+Rules:
+- Set email_verified = false initially
+- User must verify email before:
+  - sending messages
+  - contacting other users
+  - creating transactions
+
+----------------------------------
+3. PROFILE MANAGEMENT
+----------------------------------
+
+Endpoints:
+
+- POST /profile/update
+- POST /upload (for documents)
+
+Allow users to update:
+- company_name
+- address
+- website
+- logo
+
+Uploads:
+- trade_license_document
+- government_id_document
+- company_logo
+
+----------------------------------
+4. LISTING VISIBILITY + ACCESS CONTROL
+----------------------------------
+
+- Listings are PUBLIC (no login required to view)
+
+BUT:
+- Must SIGN UP + LOGIN to:
+  - contact listing owner
+  - send messages
+
+If not logged in:
+- Show message:
+  "Sign up to connect with verified businesses"
+
+----------------------------------
+5. CONTACT / CHAT SYSTEM (CORE FEATURE)
+----------------------------------
+
+Messaging between users (b2b_trader, retailer, miner, manufacturer)
+
+Rules:
+- Only email_verified users can message
+- Only verified users (basic/premium) can initiate chat
+- Subscription rules:
+  - starter/growth/pro → unlimited messaging
+  - (optional) restrict free users later
+
+Message structure:
+
+- id
+- sender_id
+- receiver_id
+- message_text
+- created_at
+- is_read (true/false)
+
+Endpoints:
+
+- POST /messages (send message)
+- GET /messages/:user_id (inbox)
+- GET /conversations/:user1/:user2
+
+Validation:
+- Prevent messaging self
+- Validate both users exist
+
+UI:
+- “Contact Seller” button on listing
+- Opens chat interface
+
+----------------------------------
+6. EMAIL NOTIFICATIONS (OFFLINE ALERTS)
+----------------------------------
+
+If receiver is offline:
+
+- Trigger email notification (simulate)
+
+Message format:
+"You have a new message from [company_name]"
+
+Logic:
+- If is_online = false → send email alert
+
+----------------------------------
+7. PRIVACY RULES (CRITICAL)
+----------------------------------
+
+Do NOT expose:
+- contact_number
+- email
+- government_id
+
+Public profile shows ONLY:
+- company_name
+- user_type
+- rating
+- verification badge
+- logo
+- website (optional)
+
+----------------------------------
+8. LISTING PAGE ENHANCEMENT
+----------------------------------
+
+Each listing should display:
+
+- Company Name
+- User Type (B2B Trader / Miner / etc)
+- Verification Badge
+- Rating
+
+Buttons:
+- "Contact Seller"
+
+If user not logged in:
+- Show popup:
+  "Sign up to connect with verified traders and businesses"
+
+----------------------------------
+9. ONLINE / OFFLINE STATUS
+----------------------------------
+
+Track user activity:
+
+- is_online (true/false)
+- last_active_at
+
+Logic:
+- On login → set is_online = true
+- After inactivity → set is_online = false
+
+----------------------------------
+10. POSITIONING TEXT (UPDATE UI)
+----------------------------------
+
+Update platform messaging:
+
+- "Connect with verified traders, miners, and manufacturers globally"
+- "Sign up to contact sellers and start trading"
+- "Zero commission. Direct trade between businesses"
+- "Your contact details are private and secure"
+
+----------------------------------
+11. FUTURE-READY STRUCTURE
+----------------------------------
+
+Prepare system for:
+- adding more user types (wholesaler, exporter, importer)
+- real email service (SMTP)
+- file storage (S3 or cloud)
+
+----------------------------------
+GOAL:
+Transform the platform into a professional B2B gemstone trading network with verified business identities, secure communication, private contact details, and controlled access to interactions.

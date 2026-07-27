@@ -1,0 +1,265 @@
+Build a complete "Gem Auctions" system integrated with existing gemstone listings.
+
+----------------------------------
+1. FEATURE OVERVIEW
+----------------------------------
+
+Create "Gem Auctions" where users can auction existing gemstone listings.
+
+Rules:
+- Auctions must be created ONLY from existing listings
+- No duplicate product data
+- Only verified users can create auctions
+- Only verified users can bid
+
+----------------------------------
+2. AUCTION DATA MODEL
+----------------------------------
+
+Create auction structure:
+
+- id
+- inventory_id (linked to listing)
+- seller_id
+- starting_price
+- current_highest_bid
+- reserve_price (optional)
+- min_increment
+- start_time
+- end_time
+- status (active, completed, cancelled)
+- winner_id
+- total_bids
+
+----------------------------------
+3. BIDS MODEL
+----------------------------------
+
+Create bids structure:
+
+- id
+- auction_id
+- user_id
+- bid_amount
+- created_at
+
+----------------------------------
+4. CREATE AUCTION FROM LISTING
+----------------------------------
+
+Add button in Seller Dashboard → My Listings:
+- "Start Gem Auction"
+
+Create endpoint:
+
+POST /gem-auctions/create
+
+Input:
+- inventory_id
+- starting_price
+- reserve_price (optional)
+- min_increment
+- duration_hours
+
+Validation:
+- user must own the listing
+- listing must not already be in auction
+- user must be verified
+
+----------------------------------
+5. UPDATE LISTING STATUS
+----------------------------------
+
+Add fields in inventory:
+
+- is_in_auction (true/false)
+- auction_id
+
+When auction starts:
+- set is_in_auction = true
+
+----------------------------------
+6. PLACE BID
+----------------------------------
+
+Endpoint:
+
+POST /gem-auctions/bid
+
+Input:
+- auction_id
+- bid_amount
+
+Rules:
+- bid must be greater than current_highest_bid + min_increment
+- seller cannot bid on own auction
+- only verified users can bid
+
+Update:
+- current_highest_bid
+- total_bids
+
+----------------------------------
+7. AUCTION TIMER & COMPLETION
+----------------------------------
+
+- Automatically end auction when end_time reached
+
+On completion:
+- highest bidder becomes winner
+- update status = completed
+- set winner_id
+
+If reserve_price exists and not met:
+- mark as "not sold"
+
+----------------------------------
+8. POST-AUCTION FLOW
+----------------------------------
+
+- Open chat between seller and winner
+- Send email notification:
+  - "You won the auction"
+  - "Your auction has ended"
+
+----------------------------------
+9. GEM AUCTIONS PAGE
+----------------------------------
+
+Create page:
+
+/gem-auctions
+
+Display:
+- all active auctions
+
+Filters:
+- gemstone type
+- price range
+- ending soon
+
+----------------------------------
+10. HOMEPAGE INTEGRATION
+----------------------------------
+
+Add section:
+
+"💎 Live Gem Auctions"
+
+Show:
+- top 10 active auctions
+
+Each card should display:
+
+- gemstone image
+- stone_type
+- carat
+- current_highest_bid
+- total_bids
+- time_remaining
+- seller verification badge
+
+----------------------------------
+11. COUNTDOWN TIMER
+----------------------------------
+
+- Show live countdown (end_time - current_time)
+- Update every second on UI
+
+----------------------------------
+12. REAL-TIME REFRESH (PHASE 1)
+----------------------------------
+
+- Auto refresh auction data every 5–10 seconds
+
+----------------------------------
+13. HIGHLIGHTS
+----------------------------------
+
+If time_remaining < 1 hour:
+- show "Ending Soon"
+
+If total_bids > 5:
+- show "🔥 Trending"
+
+----------------------------------
+14. AUCTION DETAIL PAGE
+----------------------------------
+
+Create page:
+
+/gem-auctions/:id
+
+Show:
+- full stone details
+- image gallery
+- seller info
+- current bid
+- bid history
+- place bid form
+
+----------------------------------
+15. MONETIZATION
+----------------------------------
+
+Add auction pricing:
+
+- standard auction: $20
+- featured auction: $50
+
+Add fields:
+- is_featured
+- boost_expiry_date
+
+Featured auctions:
+- appear on top
+- shown on homepage
+
+----------------------------------
+16. PAYMENT INTEGRATION
+----------------------------------
+
+Use existing payment system:
+
+Before auction goes live:
+- require payment (if paid listing)
+
+Update payment type:
+- "auction_listing"
+
+----------------------------------
+17. ACCESS CONTROL
+----------------------------------
+
+- Only verified users can create auctions
+- Only verified users can bid
+- Only subscribed users can create auctions (optional)
+
+----------------------------------
+18. PREVENT DOUBLE SELLING
+----------------------------------
+
+If listing is in auction:
+- disable direct sale
+
+----------------------------------
+19. ERROR HANDLING
+----------------------------------
+
+- prevent bidding after auction ends
+- prevent invalid bids
+- prevent duplicate auctions
+
+----------------------------------
+20. FUTURE READY
+----------------------------------
+
+Prepare for:
+- auto-bidding (proxy bidding)
+- watchlist (save auction)
+- real-time WebSocket bidding
+- auction analytics
+
+----------------------------------
+GOAL:
+Create a robust Gem Auctions system that drives engagement, enables real-time bidding, and integrates seamlessly with existing listings.

@@ -1,0 +1,106 @@
+Create AstroBot – an astrology-based gemstone recommendation engine integrated with the marketplace.
+
+----------------------------------
+1. CREATE ASTROBOT MODULE
+----------------------------------
+
+Create endpoint:
+
+POST /astrobot/recommend
+
+Input:
+- date_of_birth
+- concern (career, wealth, health, marriage, protection)
+- budget_preference (low, medium, premium)
+- location (optional)
+
+----------------------------------
+2. ZODIAC CALCULATION
+----------------------------------
+
+Convert date_of_birth → zodiac sign
+
+----------------------------------
+3. GEMSTONE MAPPING
+----------------------------------
+
+Create mapping:
+
+zodiac_to_gemstone = {
+  Aries: "Red Coral",
+  Taurus: "Emerald",
+  Gemini: "Emerald",
+  Cancer: "Pearl",
+  Leo: "Ruby",
+  Virgo: "Emerald",
+  Libra: "Diamond",
+  Scorpio: "Red Coral",
+  Sagittarius: "Yellow Sapphire",
+  Capricorn: "Blue Sapphire",
+  Aquarius: "Blue Sapphire",
+  Pisces: "Yellow Sapphire"
+}
+
+----------------------------------
+4. CONCERN-BASED OVERRIDE
+----------------------------------
+
+If concern provided, override or prioritize:
+
+- wealth → Yellow Sapphire
+- protection → Turquoise / Aqeeq
+- health → Emerald
+- marriage → Diamond
+- career → Ruby
+
+----------------------------------
+5. OUTPUT RESPONSE
+----------------------------------
+
+Return:
+
+- recommended_gemstone
+- reason
+- suggested_quality (natural, untreated, certified)
+
+----------------------------------
+6. MARKETPLACE INTEGRATION
+----------------------------------
+
+Fetch listings:
+
+GET /inventory/search?stone_type={recommended_gemstone}
+
+If location available:
+- filter nearby traders
+
+----------------------------------
+7. UI FLOW
+----------------------------------
+
+Create AstroBot page:
+
+- Step-by-step question form
+- Show recommendation
+- Show listings below
+
+----------------------------------
+8. DISCLAIMER (IMPORTANT)
+----------------------------------
+
+Display:
+
+"This recommendation is based on general astrological beliefs. Please consult a professional astrologer before making decisions."
+
+----------------------------------
+9. FUTURE READY
+----------------------------------
+
+Prepare for:
+- AI-based astrology engine
+- birth chart integration
+- premium consultation
+
+----------------------------------
+GOAL:
+Help users discover the right gemstone based on astrology and directly connect them to available listings on the platform.

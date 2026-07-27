@@ -1,0 +1,157 @@
+Enhance the platform with email notifications, support ticket system, and Thai Baht currency support.
+
+----------------------------------
+1. EMAIL NOTIFICATION SYSTEM
+----------------------------------
+
+Create a centralized email notification module.
+
+----------------------------------
+EVENT-BASED EMAILS
+----------------------------------
+
+Trigger emails for:
+
+1. User Registration
+- Send welcome email:
+  "Welcome to the platform. Please verify your email."
+
+2. Email Verification
+- After verification:
+  "Your email has been successfully verified."
+
+3. User Verification Approved
+- When admin approves user:
+  "Your account has been verified. You can now start trading."
+
+4. New Message Received
+- When user receives a message AND is offline:
+  "You have a new message from [company_name]. Log in to respond."
+
+----------------------------------
+IMPLEMENTATION
+----------------------------------
+
+Create function:
+- sendEmail(to, subject, message)
+
+Simulate email sending for now (console log or mock)
+
+Store email logs:
+- id
+- user_id
+- type (registration, verification, message, etc)
+- timestamp
+
+----------------------------------
+2. SUPPORT TICKET SYSTEM
+----------------------------------
+
+Create a support system for users and admin.
+
+----------------------------------
+USER SIDE
+----------------------------------
+
+Add "Support" section in user dashboard.
+
+User can:
+- Create ticket
+
+Fields:
+- ticket_id
+- user_id
+- subject
+- message
+- status (open, in_progress, resolved)
+- created_at
+
+Endpoints:
+- POST /support/tickets (create ticket)
+- GET /support/tickets/:user_id (view own tickets)
+
+----------------------------------
+ADMIN SIDE
+----------------------------------
+
+Admin panel section: "Support Tickets"
+
+Admin can:
+- View all tickets
+- Filter by status
+- Respond to ticket
+- Update status
+
+Add responses:
+
+ticket_responses:
+- ticket_id
+- admin_id
+- message
+- timestamp
+
+Endpoints:
+- GET /admin/tickets
+- POST /admin/tickets/respond
+- PUT /admin/tickets/status
+
+----------------------------------
+EMAIL ALERTS FOR SUPPORT
+----------------------------------
+
+- When ticket created → notify admin
+- When admin replies → notify user
+
+----------------------------------
+3. ADD THAI BAHT (THB) CURRENCY
+----------------------------------
+
+Update currency system.
+
+----------------------------------
+SUPPORTED CURRENCIES:
+----------------------------------
+
+- USD
+- INR
+- AED
+- THB (Thai Baht)
+
+----------------------------------
+IMPLEMENTATION
+----------------------------------
+
+1. Update inventory:
+- Allow THB in currency field
+
+2. Conversion logic:
+- Convert THB to USD (base currency)
+
+3. Update UI dropdown:
+- Add "THB - Thai Baht"
+
+4. Store:
+- original_price
+- currency
+- base_price_usd
+
+----------------------------------
+4. VALIDATION
+----------------------------------
+
+- Ensure all price calculations support THB
+- Ensure currency conversion works correctly
+
+----------------------------------
+5. UI UPDATES
+----------------------------------
+
+- Show currency symbol:
+  USD ($)
+  INR (₹)
+  AED (د.إ)
+  THB (฿)
+
+----------------------------------
+GOAL:
+Improve platform engagement with automated emails, add a structured support system for users, and enable Thai Baht for global trading expansion.

@@ -1,0 +1,127 @@
+Build a premium "Store Profile Page" UI for a B2B gemstone marketplace.
+
+----------------------------------
+1. HEADER SECTION
+----------------------------------
+
+Display:
+
+- company logo (large, circular)
+- company name (bold)
+- user_type (b2btrader, etc)
+- location with country flag
+- trust_score (circular progress meter)
+- verification badges (basic, premium, legacy)
+
+----------------------------------
+2. ACTION BAR (STICKY ON MOBILE)
+----------------------------------
+
+Buttons:
+
+- Chat
+- WhatsApp
+- Connect
+- Request Endorsement
+
+----------------------------------
+3. BUSINESS DETAILS
+----------------------------------
+
+Show:
+
+- owner_name
+- years_in_business
+- specialization
+- website
+
+----------------------------------
+4. MEDIA GALLERY
+----------------------------------
+
+Grid layout with tabs:
+
+- All
+- Shop
+- Certificates
+- Inventory
+
+Allow multiple image uploads
+
+----------------------------------
+5. CONNECTIONS
+----------------------------------
+
+Horizontal scroll list:
+
+- show connected traders
+- include logo + company name
+
+----------------------------------
+6. ENDORSEMENTS
+----------------------------------
+
+Card UI:
+
+- message
+- company name
+- logo
+
+----------------------------------
+7. TRUST SCORE BREAKDOWN
+----------------------------------
+
+Progress bars:
+
+- deals completed
+- payment timeliness
+- endorsements
+- response rate
+
+----------------------------------
+8. TABS SECTION
+----------------------------------
+
+Tabs:
+
+- Listings
+- Auctions
+- Activity
+
+----------------------------------
+9. LISTINGS GRID
+----------------------------------
+
+Each card:
+
+- image carousel
+- gemstone name
+- price
+- certification
+- seller info
+
+----------------------------------
+10. ACTIVITY FEED
+----------------------------------
+
+Timeline format:
+
+- listing added
+- auction created
+- deal completed
+
+----------------------------------
+11. LANGUAGE SWITCHER
+----------------------------------
+
+Add top-right toggle for multi-language
+
+----------------------------------
+12. ONLINE STATUS
+----------------------------------
+
+Show online/offline indicator
+
+----------------------------------
+GOAL:
+Design a mobile-first, high-trust, premium UI that helps traders quickly evaluate credibility and connect instantly.

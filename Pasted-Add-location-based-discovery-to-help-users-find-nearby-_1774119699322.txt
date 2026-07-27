@@ -1,0 +1,132 @@
+Add location-based discovery to help users find nearby traders with specific gemstones.
+
+----------------------------------
+1. ADD LOCATION DATA TO USERS
+----------------------------------
+
+Update user profile:
+
+- city
+- state
+- country
+- latitude
+- longitude
+
+Allow:
+- Manual entry OR auto-detect (future)
+
+----------------------------------
+2. STORE LOCATION DURING SIGNUP / PROFILE UPDATE
+----------------------------------
+
+Update endpoints:
+- POST /signup
+- POST /profile/update
+
+Ensure:
+- latitude & longitude are stored
+
+----------------------------------
+3. GEO SEARCH FUNCTION
+----------------------------------
+
+Create function:
+
+findNearbyTraders(user_lat, user_lng, radius_km)
+
+Logic:
+- Calculate distance between users (Haversine formula)
+- Filter users within radius (default 50 km)
+
+----------------------------------
+4. INVENTORY + LOCATION LINK
+----------------------------------
+
+Each listing should include:
+- seller_id
+- seller_location (lat, lng)
+
+----------------------------------
+5. SEARCH BY GEMSTONE + LOCATION
+----------------------------------
+
+Create endpoint:
+
+GET /inventory/search
+
+Filters:
+- stone_type
+- radius_km
+- user location
+
+Return:
+- listings available within radius
+
+----------------------------------
+6. UI: “FIND NEARBY” FEATURE
+----------------------------------
+
+On listing page:
+
+Add button:
+- "Find Nearby Traders"
+
+OR
+
+On search page:
+- Toggle: “Show Nearby Only”
+
+----------------------------------
+7. DISPLAY DISTANCE
+----------------------------------
+
+For each result show:
+
+- Distance (e.g., “5.2 km away”)
+- City / Country
+
+----------------------------------
+8. SORTING
+----------------------------------
+
+Sort results by:
+- nearest first
+
+----------------------------------
+9. CHAT INTEGRATION
+----------------------------------
+
+Add button:
+- “Contact Nearby Trader”
+
+Opens chat (existing messaging system)
+
+----------------------------------
+10. MAP VIEW (OPTIONAL - FUTURE)
+----------------------------------
+
+Prepare for:
+- map view (Google Maps or similar)
+- pins showing traders
+
+----------------------------------
+11. PRIVACY CONTROL
+----------------------------------
+
+- Do NOT show exact address
+- Only show:
+  - city
+  - approximate distance
+
+----------------------------------
+12. DEFAULT BEHAVIOR
+----------------------------------
+
+If user location not available:
+- show global listings
+- prompt:
+  "Enable location to find nearby traders"
+
+----------------------------------
+GOAL:
+Enable users to discover and connect with nearby traders for faster, location-based gemstone trading.
