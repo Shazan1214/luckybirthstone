@@ -1,0 +1,303 @@
+[
+  {
+    "id": "d49c2815-1890-4a3a-8419-1d642ec14e75",
+    "seller_id": "4573d89d-3e34-4f8f-b3cf-45c1bb98a15f",
+    "stone_type": "Diamond",
+    "carat": 1.52,
+    "origin": "Russia",
+    "treatment": "None",
+    "color": "D",
+    "clarity": "VVS1",
+    "rap_price_per_carat": 13500,
+    "total_rap_value": 20520,
+    "price": 145000,
+    "currency": "USD",
+    "base_price_usd": 145000,
+    "certificate_number": "GIA1174852",
+    "images": [
+      {
+        "image_url": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "front"
+      },
+      {
+        "image_url": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "side"
+      },
+      {
+        "image_url": "https://images.unsplash.com/photo-1603902618516-5a3e22dd73d9?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "certificate"
+      }
+    ],
+    "is_featured": true,
+    "boost_expiry_date": "2026-03-28T20:19:39.174Z",
+    "created_at": "2026-03-21T19:22:47.625Z",
+    "estimated_price_min": 12312,
+    "estimated_price_max": 18468,
+    "pricing_confidence": "high",
+    "pricing_disclaimer": "Rapaport Benchmark Price. Estimated Trade Range represents 60–90% of Rap value."
+  },
+  {
+    "id": "b39bf299-4480-4b27-82f3-6b0cc81624d4",
+    "seller_id": "4573d89d-3e34-4f8f-b3cf-45c1bb98a15f",
+    "stone_type": "Diamond",
+    "carat": 0.75,
+    "origin": "Botswana",
+    "treatment": "None",
+    "color": "G",
+    "clarity": "VS1",
+    "rap_price_per_carat": 3200,
+    "total_rap_value": 2400,
+    "price": 4200,
+    "currency": "USD",
+    "base_price_usd": 4200,
+    "certificate_number": "GIA9928341",
+    "images": [
+      {
+        "image_url": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "front"
+      },
+      {
+        "image_url": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "side"
+      }
+    ],
+    "is_featured": true,
+    "boost_expiry_date": "2026-03-28T20:21:11.361Z",
+    "created_at": "2026-03-21T19:22:47.625Z",
+    "estimated_price_min": 1440,
+    "estimated_price_max": 2160,
+    "pricing_confidence": "high",
+    "pricing_disclaimer": "Rapaport Benchmark Price. Estimated Trade Range represents 60–90% of Rap value."
+  },
+  {
+    "id": "3c339f93-ccb0-4cdb-a546-54758d13a782",
+    "seller_id": "4bfa4ef1-ce9b-4de5-b291-7221d5e97e22",
+    "stone_type": "Ruby",
+    "carat": 2.47,
+    "origin": "Burma",
+    "treatment": "None",
+    "color": null,
+    "clarity": null,
+    "rap_price_per_carat": null,
+    "total_rap_value": null,
+    "price": 18500,
+    "currency": "USD",
+    "base_price_usd": 18500,
+    "certificate_number": "GRS2024-R8871",
+    "images": [
+      {
+        "image_url": "https://images.unsplash.com/photo-1560161793-ec61e5d72caf?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "front"
+      },
+      {
+        "image_url": "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "inclusion"
+      },
+      {
+        "image_url": "https://images.unsplash.com/photo-1611244419377-b0a760c19719?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "certificate"
+      }
+    ],
+    "is_featured": true,
+    "boost_expiry_date": "2026-03-28T19:22:47.625Z",
+    "created_at": "2026-03-21T19:22:47.625Z",
+    "estimated_price_min": 12282.08,
+    "estimated_price_max": 16616.93,
+    "pricing_confidence": "high",
+    "pricing_disclaimer": "Indicative price only. Actual value may vary."
+  },
+  {
+    "id": "467638c3-e10a-48dd-9212-86c89cc69865",
+    "seller_id": "4573d89d-3e34-4f8f-b3cf-45c1bb98a15f",
+    "stone_type": "Emerald",
+    "carat": 3.15,
+    "origin": "Colombia",
+    "treatment": "Oiling",
+    "color": null,
+    "clarity": null,
+    "rap_price_per_carat": null,
+    "total_rap_value": null,
+    "price": 22000,
+    "currency": "USD",
+    "base_price_usd": 22000,
+    "certificate_number": "GRS2024-E4432",
+    "images": [
+      {
+        "image_url": "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "front"
+      },
+      {
+        "image_url": "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "side"
+      }
+    ],
+    "is_featured": false,
+    "boost_expiry_date": null,
+    "created_at": "2026-03-21T19:22:47.625Z",
+    "estimated_price_min": 6325.59,
+    "estimated_price_max": 8558.16,
+    "pricing_confidence": "high",
+    "pricing_disclaimer": "Indicative price only. Actual value may vary."
+  },
+  {
+    "id": "c275cbaa-eb1e-405c-b947-38b879510948",
+    "seller_id": "4573d89d-3e34-4f8f-b3cf-45c1bb98a15f",
+    "stone_type": "Sapphire",
+    "carat": 5.62,
+    "origin": "Kashmir",
+    "treatment": "None",
+    "color": null,
+    "clarity": null,
+    "rap_price_per_carat": null,
+    "total_rap_value": null,
+    "price": 68000,
+    "currency": "USD",
+    "base_price_usd": 68000,
+    "certificate_number": "GRS2024-S0012",
+    "images": [
+      {
+        "image_url": "https://images.unsplash.com/photo-1563464493-f11d21a83929?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "front"
+      },
+      {
+        "image_url": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "side"
+      }
+    ],
+    "is_featured": false,
+    "boost_expiry_date": null,
+    "created_at": "2026-03-21T19:22:47.625Z",
+    "estimated_price_min": 29808.48,
+    "estimated_price_max": 40329.12,
+    "pricing_confidence": "high",
+    "pricing_disclaimer": "Indicative price only. Actual value may vary."
+  },
+  {
+    "id": "855b606c-d524-44c1-9155-d5050077191e",
+    "seller_id": "4bfa4ef1-ce9b-4de5-b291-7221d5e97e22",
+    "stone_type": "Alexandrite",
+    "carat": 1.83,
+    "origin": "Brazil",
+    "treatment": "None",
+    "color": null,
+    "clarity": null,
+    "rap_price_per_carat": null,
+    "total_rap_value": null,
+    "price": 37000,
+    "currency": "USD",
+    "base_price_usd": 37000,
+    "certificate_number": "GIA4418733",
+    "images": [
+      {
+        "image_url": "https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "front"
+      },
+      {
+        "image_url": "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "side"
+      }
+    ],
+    "is_featured": false,
+    "boost_expiry_date": null,
+    "created_at": "2026-03-21T19:22:47.625Z",
+    "estimated_price_min": 7643.73,
+    "estimated_price_max": 10341.51,
+    "pricing_confidence": "high",
+    "pricing_disclaimer": "Indicative price only. Actual value may vary."
+  },
+  {
+    "id": "e5f0698c-d179-44eb-aad5-52f570455939",
+    "seller_id": "4bfa4ef1-ce9b-4de5-b291-7221d5e97e22",
+    "stone_type": "Spinel",
+    "carat": 4.2,
+    "origin": "Burma",
+    "treatment": "None",
+    "color": null,
+    "clarity": null,
+    "rap_price_per_carat": null,
+    "total_rap_value": null,
+    "price": 16800,
+    "currency": "USD",
+    "base_price_usd": 16800,
+    "certificate_number": "GRS2024-SP882",
+    "images": [
+      {
+        "image_url": "https://images.unsplash.com/photo-1611244419377-b0a760c19719?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "front"
+      },
+      {
+        "image_url": "https://images.unsplash.com/photo-1560161793-ec61e5d72caf?w=800&h=600&fit=crop",
+        "width": 800,
+        "height": 600,
+        "label": "side"
+      }
+    ],
+    "is_featured": false,
+    "boost_expiry_date": null,
+    "created_at": "2026-03-21T19:22:47.625Z",
+    "estimated_price_min": 5221.13,
+    "estimated_price_max": 7063.87,
+    "pricing_confidence": "high",
+    "pricing_disclaimer": "Indicative price only. Actual value may vary."
+  },
+  {
+    "id": "606485ab-fdae-4f8f-8127-5b1957b37b06",
+    "seller_id": "4573d89d-3e34-4f8f-b3cf-45c1bb98a15f",
+    "stone_type": "Sapphire",
+    "carat": 1.5,
+    "origin": "Ceylon",
+    "treatment": "None",
+    "color": null,
+    "clarity": null,
+    "rap_price_per_carat": null,
+    "total_rap_value": null,
+    "price": 3000,
+    "currency": "USD",
+    "base_price_usd": 3000,
+    "certificate_number": "GIA999",
+    "images": [
+      {
+        "image_url": "https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=800",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "is_featured": false,
+    "boost_expiry_date": null,
+    "estimated_price_min": 2983.5,
+    "estimated_price_max": 4036.5,
+    "pricing_confidence": "high",
+    "pricing_disclaimer": "Indicative price only. Actual value may vary.",
+    "created_at": "2026-03-21T19:43:27.223Z"
+  }
+]

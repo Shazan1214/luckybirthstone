@@ -1,3 +1,57 @@
 <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="180" height="180" rx="36" fill="#FF3C00"/>
+  <rect width="180" height="180" rx="40" fill="#1a2744"/>
+  <defs>
+    <linearGradient id="topFacet" x1="90" y1="30" x2="90" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7ed4fb"/>
+      <stop offset="100%" stop-color="#38a6e8"/>
+    </linearGradient>
+    <linearGradient id="leftFacet" x1="30" y1="75" x2="90" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1e7ab8"/>
+      <stop offset="100%" stop-color="#0d4f82"/>
+    </linearGradient>
+    <linearGradient id="rightFacet" x1="150" y1="75" x2="90" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5bbef5"/>
+      <stop offset="100%" stop-color="#1e7ab8"/>
+    </linearGradient>
+    <linearGradient id="midLeft" x1="50" y1="78" x2="90" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2a95d5"/>
+      <stop offset="100%" stop-color="#0d4f82"/>
+    </linearGradient>
+    <linearGradient id="midRight" x1="130" y1="78" x2="90" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4db3ef"/>
+      <stop offset="100%" stop-color="#1a6ba8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Crown / top belt row: 4 kite facets -->
+  <!-- Left outer crown facet -->
+  <polygon points="30,75 55,78 90,42 57,30" fill="url(#topFacet)" opacity="0.9"/>
+  <!-- Left-center crown facet -->
+  <polygon points="57,30 90,42 90,28" fill="#a8e2ff" opacity="0.85"/>
+  <!-- Right-center crown facet -->
+  <polygon points="90,28 90,42 123,30" fill="#c5ecff" opacity="0.9"/>
+  <!-- Right outer crown facet -->
+  <polygon points="123,30 90,42 125,78 150,75" fill="url(#topFacet)" opacity="0.85"/>
+
+  <!-- Table (top flat face) -->
+  <polygon points="57,30 90,28 123,30 90,42" fill="#d8f3ff" opacity="0.95"/>
+
+  <!-- Girdle belt strip -->
+  <polygon points="30,75 55,78 90,42 57,30" fill="none"/>
+
+  <!-- Pavilion: lower half -->
+  <!-- Far left pavilion -->
+  <polygon points="30,75 55,78 90,150" fill="url(#leftFacet)"/>
+  <!-- Left-center pavilion -->
+  <polygon points="55,78 90,78 90,150" fill="url(#midLeft)"/>
+  <!-- Right-center pavilion -->
+  <polygon points="90,78 125,78 90,150" fill="url(#midRight)"/>
+  <!-- Far right pavilion -->
+  <polygon points="125,78 150,75 90,150" fill="url(#rightFacet)"/>
+
+  <!-- Girdle top face (belt) -->
+  <polygon points="30,75 55,78 125,78 150,75 90,42" fill="#5bbef5" opacity="0.35"/>
+
+  <!-- Highlight sheen on table -->
+  <polygon points="65,32 88,29 90,36 70,38" fill="white" opacity="0.45"/>
 </svg>
