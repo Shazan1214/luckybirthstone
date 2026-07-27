@@ -1,0 +1,937 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: GemWorld B2B Gemstone Marketplace API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: users
+    description: User management
+  - name: inventory
+    description: Gemstone inventory management
+  - name: transactions
+    description: Transaction management
+  - name: payments
+    description: Payment tracking
+  - name: admin
+    description: Platform administration
+  - name: boosts
+    description: Listing boost and promotion management
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /inventory/{id}/boost:
+    post:
+      operationId: boostListing
+      tags: [boosts]
+      summary: Apply a boost to a gemstone listing
+      description: Deducts one boost from the seller's available boosts and features the listing for 7 days
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BoostListingRequest"
+      responses:
+        "200":
+          description: Listing boosted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BoostResult"
+        "400":
+          description: No boosts available or invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Seller does not own this listing
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Listing or seller not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /users/{id}/boost-packs:
+    post:
+      operationId: buyBoostPack
+      tags: [boosts]
+      summary: Purchase a boost pack
+      description: Adds boosts to the seller's available boost balance
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BuyBoostPackRequest"
+      responses:
+        "200":
+          description: Boost pack purchased
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BoostPackPurchaseResult"
+        "400":
+          description: Invalid pack or not a seller
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /admin/launch:
+    get:
+      operationId: getLaunchConfig
+      tags: [admin]
+      summary: Get current launch period status and pricing
+      responses:
+        "200":
+          description: Launch configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LaunchConfig"
+    patch:
+      operationId: setLaunchPeriod
+      tags: [admin]
+      summary: Enable or disable the launch period
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetLaunchPeriodRequest"
+      responses:
+        "200":
+          description: Updated launch configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LaunchConfig"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /transactions:
+    post:
+      operationId: createTransaction
+      tags: [transactions]
+      summary: Create a transaction request
+      description: Buyer creates a new transaction for a gemstone
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTransactionRequest"
+      responses:
+        "201":
+          description: Transaction created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /payments:
+    post:
+      operationId: createPayment
+      tags: [payments]
+      summary: Record a payment
+      description: Record a payment against a transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePaymentRequest"
+      responses:
+        "201":
+          description: Payment recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Payment"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /buyers/{id}/credit-summary:
+    get:
+      operationId: getBuyerCreditSummary
+      tags: [transactions]
+      summary: Get buyer credit summary (PRO sellers only)
+      description: Returns credit score, total outstanding and overdue amounts for a buyer. Only accessible to PRO plan sellers.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: requester_id
+          in: query
+          required: true
+          description: The seller's user ID making this request
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Full credit summary (PRO sellers only)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreditSummary"
+        "401":
+          description: requester_id is missing
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Requester is not a PRO seller
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Requester not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /users/{id}/subscription:
+    patch:
+      operationId: updateSubscriptionPlan
+      tags: [users]
+      summary: Update seller subscription plan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateSubscriptionRequest"
+      responses:
+        "200":
+          description: Subscription plan updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Invalid plan or not a seller
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /users/{id}/verification-request:
+    post:
+      operationId: submitVerificationRequest
+      tags: [users]
+      summary: Submit verification fee payment
+      description: User pays the verification fee and requests a tier upgrade
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerificationRequestBody"
+      responses:
+        "200":
+          description: Verification request submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /users/{id}/verification:
+    patch:
+      operationId: adminVerifyUser
+      tags: [users]
+      summary: Admin approves or rejects a verification request
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminVerificationAction"
+      responses:
+        "200":
+          description: Verification action applied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Invalid request or no pending verification
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /inventory:
+    get:
+      operationId: listInventory
+      tags: [inventory]
+      summary: List all gemstones
+      description: Returns all gemstones listed on GemWorld
+      responses:
+        "200":
+          description: List of gemstones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Gemstone"
+    post:
+      operationId: addGemstone
+      tags: [inventory]
+      summary: Add a gemstone listing
+      description: Seller adds a new gemstone to inventory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateGemstoneRequest"
+      responses:
+        "201":
+          description: Gemstone created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Gemstone"
+        "400":
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Seller not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /users:
+    get:
+      operationId: listUsers
+      tags: [users]
+      summary: List all users
+      description: Returns a list of all registered users
+      responses:
+        "200":
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+    post:
+      operationId: createUser
+      tags: [users]
+      summary: Create a new user
+      description: Register a new user on GemWorld
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequest"
+      responses:
+        "201":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Email already registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    TransactionStatus:
+      type: string
+      enum: [pending, completed, overdue]
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+        buyer_id:
+          type: string
+        seller_id:
+          type: string
+        inventory_id:
+          type: string
+        total_amount:
+          type: number
+          minimum: 0
+        currency:
+          $ref: "#/components/schemas/Currency"
+        advance_paid:
+          type: number
+          minimum: 0
+        credit_amount:
+          type: number
+          minimum: 0
+        due_date:
+          type: string
+          format: date-time
+        status:
+          $ref: "#/components/schemas/TransactionStatus"
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - buyer_id
+        - seller_id
+        - inventory_id
+        - total_amount
+        - currency
+        - advance_paid
+        - credit_amount
+        - due_date
+        - status
+        - created_at
+    CreateTransactionRequest:
+      type: object
+      properties:
+        buyer_id:
+          type: string
+        seller_id:
+          type: string
+        inventory_id:
+          type: string
+        total_amount:
+          type: number
+          minimum: 0
+        currency:
+          $ref: "#/components/schemas/Currency"
+        advance_paid:
+          type: number
+          minimum: 0
+        credit_amount:
+          type: number
+          minimum: 0
+        due_date:
+          type: string
+          format: date-time
+      required:
+        - buyer_id
+        - seller_id
+        - inventory_id
+        - total_amount
+        - currency
+        - advance_paid
+        - credit_amount
+        - due_date
+    Payment:
+      type: object
+      properties:
+        id:
+          type: string
+        transaction_id:
+          type: string
+        amount:
+          type: number
+          minimum: 0
+        paid_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - transaction_id
+        - amount
+        - paid_at
+    CreatePaymentRequest:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+        amount:
+          type: number
+          minimum: 0
+      required:
+        - transaction_id
+        - amount
+    CreditSummary:
+      type: object
+      properties:
+        buyer_id:
+          type: string
+        credit_score:
+          type: integer
+          minimum: 300
+          maximum: 850
+          description: Computed credit score (300–850). Higher is better.
+        credit_rating:
+          type: string
+          description: Human-readable rating derived from credit score
+        total_outstanding:
+          type: number
+        overdue_amount:
+          type: number
+        completed_transactions:
+          type: integer
+        overdue_transactions:
+          type: integer
+        transactions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Transaction"
+      required:
+        - buyer_id
+        - credit_score
+        - credit_rating
+        - total_outstanding
+        - overdue_amount
+        - completed_transactions
+        - overdue_transactions
+        - transactions
+    Currency:
+      type: string
+      enum: [USD, INR, AED]
+    Gemstone:
+      type: object
+      properties:
+        id:
+          type: string
+        seller_id:
+          type: string
+        stone_type:
+          type: string
+        carat:
+          type: number
+          minimum: 0
+        origin:
+          type: string
+        treatment:
+          type: string
+        price:
+          type: number
+          minimum: 0
+        currency:
+          $ref: "#/components/schemas/Currency"
+        base_price_usd:
+          type: number
+          minimum: 0
+        certificate_number:
+          type: string
+        image_url:
+          type: string
+        color:
+          type: string
+          nullable: true
+          description: GIA colour grade (D–M). Required for diamonds.
+        clarity:
+          type: string
+          nullable: true
+          description: GIA clarity grade (IF, VVS1, VVS2, VS1, VS2, SI1, SI2, I1, I2, I3). Required for diamonds.
+        rap_price_per_carat:
+          type: number
+          nullable: true
+          description: "Rapaport Benchmark Price (USD/carat). Diamonds only."
+        total_rap_value:
+          type: number
+          nullable: true
+          description: "Total Rapaport value = rap_price_per_carat × carat. Diamonds only."
+        is_featured:
+          type: boolean
+        boost_expiry_date:
+          type: string
+          format: date-time
+          nullable: true
+        estimated_price_min:
+          type: number
+          minimum: 0
+          description: "Estimated Trade Range — floor (USD). Diamonds: 60% of Rap. Others: rule-based."
+        estimated_price_max:
+          type: number
+          minimum: 0
+          description: "Estimated Trade Range — ceiling (USD). Diamonds: 90% of Rap. Others: rule-based."
+        pricing_confidence:
+          type: string
+          enum: [low, medium, high]
+          description: Confidence level for the estimated price range
+        pricing_disclaimer:
+          type: string
+          description: Disclaimer for the estimated price
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - seller_id
+        - stone_type
+        - carat
+        - origin
+        - treatment
+        - price
+        - currency
+        - base_price_usd
+        - certificate_number
+        - image_url
+        - is_featured
+        - estimated_price_min
+        - estimated_price_max
+        - pricing_confidence
+        - pricing_disclaimer
+        - created_at
+    CreateGemstoneRequest:
+      type: object
+      properties:
+        seller_id:
+          type: string
+        stone_type:
+          type: string
+          minLength: 1
+        carat:
+          type: number
+          minimum: 0
+        origin:
+          type: string
+          minLength: 1
+        treatment:
+          type: string
+          minLength: 1
+        color:
+          type: string
+          description: GIA colour grade (D–M). Required when stone_type is diamond.
+        clarity:
+          type: string
+          description: GIA clarity grade. Required when stone_type is diamond.
+        price:
+          type: number
+          minimum: 0
+        currency:
+          $ref: "#/components/schemas/Currency"
+        certificate_number:
+          type: string
+          minLength: 1
+        image_url:
+          type: string
+          minLength: 1
+      required:
+        - seller_id
+        - stone_type
+        - carat
+        - origin
+        - treatment
+        - price
+        - currency
+        - certificate_number
+        - image_url
+    UserRole:
+      type: string
+      enum: [buyer, seller, admin]
+    VerificationStatus:
+      type: string
+      enum: [unverified, basic_verified, premium_verified]
+    BoostPackType:
+      type: string
+      enum: [boosts_5, boosts_10]
+    BoostListingRequest:
+      type: object
+      properties:
+        seller_id:
+          type: string
+      required:
+        - seller_id
+    BuyBoostPackRequest:
+      type: object
+      properties:
+        pack:
+          $ref: "#/components/schemas/BoostPackType"
+      required:
+        - pack
+    BoostResult:
+      type: object
+      properties:
+        gemstone_id:
+          type: string
+        is_featured:
+          type: boolean
+        boost_expiry_date:
+          type: string
+          format: date-time
+        boosts_remaining:
+          type: integer
+        boost_cost_usd:
+          type: number
+        expires_in_days:
+          type: integer
+      required:
+        - gemstone_id
+        - is_featured
+        - boost_expiry_date
+        - boosts_remaining
+        - boost_cost_usd
+        - expires_in_days
+    BoostPackPurchaseResult:
+      type: object
+      properties:
+        pack:
+          $ref: "#/components/schemas/BoostPackType"
+        boosts_added:
+          type: integer
+        cost_usd:
+          type: number
+        boosts_available:
+          type: integer
+        standard_price_per_boost:
+          type: number
+        effective_price_per_boost:
+          type: number
+      required:
+        - pack
+        - boosts_added
+        - cost_usd
+        - boosts_available
+        - standard_price_per_boost
+        - effective_price_per_boost
+    LaunchPricing:
+      type: object
+      properties:
+        starter:
+          type: number
+        growth:
+          type: number
+        pro:
+          type: number
+      required: [starter, growth, pro]
+    LaunchVerificationFees:
+      type: object
+      properties:
+        basic_verified:
+          type: number
+        premium_verified:
+          type: number
+      required: [basic_verified, premium_verified]
+    LaunchConfig:
+      type: object
+      properties:
+        is_launch_period:
+          type: boolean
+        verification_fees:
+          $ref: "#/components/schemas/LaunchVerificationFees"
+        subscription_pricing:
+          $ref: "#/components/schemas/LaunchPricing"
+        free_boosts_granted:
+          type: integer
+      required:
+        - is_launch_period
+        - verification_fees
+        - subscription_pricing
+        - free_boosts_granted
+    SetLaunchPeriodRequest:
+      type: object
+      properties:
+        is_launch_period:
+          type: boolean
+      required:
+        - is_launch_period
+    SubscriptionPlan:
+      type: string
+      enum: [starter, growth, pro]
+    UpdateSubscriptionRequest:
+      type: object
+      properties:
+        plan:
+          $ref: "#/components/schemas/SubscriptionPlan"
+      required:
+        - plan
+    VerificationBadge:
+      type: string
+      enum: [none, basic_verified, premium_verified]
+    VerifiableTier:
+      type: string
+      enum: [basic_verified, premium_verified]
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        role:
+          $ref: "#/components/schemas/UserRole"
+        verification_status:
+          $ref: "#/components/schemas/VerificationStatus"
+        verification_fee_paid:
+          type: boolean
+        verification_badge:
+          $ref: "#/components/schemas/VerificationBadge"
+        requested_tier:
+          $ref: "#/components/schemas/VerifiableTier"
+        subscription_plan:
+          $ref: "#/components/schemas/SubscriptionPlan"
+        free_boosts:
+          type: integer
+          minimum: 0
+        is_founding_seller:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - email
+        - role
+        - verification_status
+        - verification_fee_paid
+        - verification_badge
+        - subscription_plan
+        - free_boosts
+        - is_founding_seller
+        - created_at
+    VerificationRequestBody:
+      type: object
+      properties:
+        tier:
+          $ref: "#/components/schemas/VerifiableTier"
+      required:
+        - tier
+    AdminVerificationAction:
+      type: object
+      properties:
+        action:
+          type: string
+          enum: [approve, reject]
+      required:
+        - action
+    CreateUserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        role:
+          $ref: "#/components/schemas/UserRole"
+      required:
+        - name
+        - email
+        - role
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
