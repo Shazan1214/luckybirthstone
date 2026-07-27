@@ -1,0 +1,1 @@
+{"version":3,"file":"boostResult.d.ts","sourceRoot":"","sources":["../../../src/generated/types/boostResult.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AAEH,MAAM,WAAW,WAAW;IAC1B,WAAW,EAAE,MAAM,CAAC;IACpB,WAAW,EAAE,OAAO,CAAC;IACrB,iBAAiB,EAAE,IAAI,CAAC;IACxB,gBAAgB,EAAE,MAAM,CAAC;IACzB,cAAc,EAAE,MAAM,CAAC;IACvB,eAAe,EAAE,MAAM,CAAC;CACzB"}
