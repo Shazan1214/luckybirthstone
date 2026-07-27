@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Switch, Route, Router as WouterRouter, Link, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider, useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { api, fetchPendingConnections, acceptConnection, rejectConnection, type Connection, type ApprovalRequest } from "@/lib/api";
 import AuthPage from "@/pages/AuthPage";
 import MarketplacePage from "@/pages/MarketplacePage";
@@ -547,6 +548,7 @@ function App() {
           <Route component={MainApp} />
         </Switch>
       </WouterRouter>
+      <SpeedInsights />
     </QueryClientProvider>
   );
 }
